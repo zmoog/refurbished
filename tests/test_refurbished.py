@@ -1,4 +1,3 @@
-import unittest
 import pkgutil
 import io
 from unittest import mock

@@ -49,7 +49,7 @@ class TestParser:
         assert product.previous_price == decimal.Decimal('449.00')
         assert product.savings_price == decimal.Decimal('60.00')
 
-    def test_product_ipad(self):
+    def test_product_mac(self):
         """
         Tests the specific product page.
         """
