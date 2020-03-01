@@ -32,7 +32,7 @@ First, you need to get the project source code:
 ```bash
 $ git clone https://github.com/zmoog/refurbished.git
 
-$ cd ifq-buddy
+$ cd refurbished
 ```
 
 Create/activate the virtual environment for this project:
