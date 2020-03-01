@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+pytest = "*"
+v = {editable = true,version = "*"}
+
+[packages]
+requests = "==2.23.0"
+lxml = "==4.5.0"
+price-parser = "==0.3.3"
+
+[requires]
+python_version = "3.7"
