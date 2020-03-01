@@ -40,7 +40,7 @@ class TestStore:
         store = Store('it')
         products = store.get_ipads()
 
-        assert len(products), 34
+        assert len(products) == 34
 
     @patch('requests.Session.get', side_effect=ResponseBuilder('it_mac.html'))
     def test_product_macs(self, _):
@@ -50,4 +50,14 @@ class TestStore:
         store = Store('it')
         products = store.get_macs()
 
-        assert len(products), 84
+        assert len(products) == 82
+
+    @patch('requests.Session.get', side_effect=ResponseBuilder('it_accessories.html'))
+    def test_product_accessories(self, _):
+
+        from refurbished import Store
+
+        store = Store('it')
+        products = store.get_accessories()
+
+        assert len(products) == 0
