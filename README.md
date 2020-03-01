@@ -14,8 +14,6 @@ Python library to access the products information available on the Apple Certifi
 
 ### Prerequisites
 
-This bot requires an AWS account. All services can run fine within the free tier.
-
 You need to install the following tools:
 
 * [Git](https://git-scm.com)
