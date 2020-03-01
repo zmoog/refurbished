@@ -1,19 +1,15 @@
 import unittest
 import pkgutil
 import io
-import pprint
 from unittest import mock
 from unittest.mock import patch
 
 
-pp = pprint.PrettyPrinter(indent=4)
-
-
 class ResponseBuilder(object):
-    
+
     def __init__(self, response_filename):
         self.response_filename = response_filename
-        
+
     def __call__(self, _):
         return self._build_response()
 
@@ -31,20 +27,27 @@ class ResponseBuilder(object):
         return mock_response
 
 
-class StoreTest(unittest.TestCase):
+class TestStore:
     """
     Test the Refutbished Store API.
     """
 
-    def setUp(self):
-        pass
-
-    @patch('requests.Session.get', side_effect=ResponseBuilder('it__ipad__ipad_pro_97__wi_fi.html'))
-    def test_product_ipad__ipad_pro_97__wifi(self, _):
+    @patch('requests.Session.get', side_effect=ResponseBuilder('it_ipad.html'))
+    def test_product_ipad(self, _):
 
         from refurbished import Store
 
         store = Store('it')
-        products = store.get_ipads(model='ipad_pro_97', connectivity='wi_fi')
+        products = store.get_ipads()
 
-        self.assertEqual(len(products), 3)
+        assert len(products), 34
+
+    @patch('requests.Session.get', side_effect=ResponseBuilder('it_mac.html'))
+    def test_product_macs(self, _):
+
+        from refurbished import Store
+
+        store = Store('it')
+        products = store.get_macs()
+
+        assert len(products), 84
