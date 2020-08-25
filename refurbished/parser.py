@@ -10,7 +10,7 @@ from lxml import html
 from price_parser import Price
 
 
-Product = namedtuple('Product', 'name price previous_price savings_price')
+Product = namedtuple('Product', 'name url price previous_price savings_price')
 
 
 def parse_products(page: str):
@@ -25,10 +25,13 @@ def parse_products(page: str):
 
     return [Product(
         _parse_name(product),
+        _parse_url(product),
         _parse_current_price(product),
         _parse_previous_price(product),
-        _parse_savings_price(product))
-            for product in products]
+        _parse_savings_price(product),
+        )
+        for product in products
+    ]
 
 
 def _parse_name(product: html.HtmlElement) -> str:
@@ -56,6 +59,12 @@ def _parse_savings_price(product: html.HtmlElement) -> decimal.Decimal:
     return _extract_price(product.xpath(
         'span[@class="as-producttile-savingsprice"]/text()'
     ))
+
+
+def _parse_url(product: html.HtmlElement) -> str:
+    """Parse the fragment with product URL."""
+    href = product.xpath('h3/a/@href')[0]
+    return f'https://www.apple.com{href}'
 
 
 def _extract_price(price_as_text: List[str]) -> decimal.Decimal:
