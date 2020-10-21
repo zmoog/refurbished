@@ -1,6 +1,6 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.org/simple"
+url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [dev-packages]
@@ -9,9 +9,6 @@ pytest = "*"
 v = {editable = true,version = "*"}
 
 [packages]
-requests = "==2.23.0"
-lxml = "==4.5.2"
-price-parser = "==0.3.3"
-
-[requires]
-python_version = "3.7"
+requests = "~=2.23.0"
+beautifulsoup4 = "~=4.9.3"
+price-parser = "~=0.3.3"
