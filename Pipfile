@@ -9,7 +9,7 @@ pytest = "*"
 v = {editable = true,version = "*"}
 
 [packages]
-requests = "==2.23.0"
+requests = "==2.25.0"
 lxml = "==4.5.2"
 price-parser = "==0.3.3"
 
