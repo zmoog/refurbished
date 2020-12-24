@@ -6,9 +6,11 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 pytest = "*"
-v = {editable = true,version = "*"}
 
 [packages]
-requests = "~=2.23.0"
-beautifulsoup4 = "~=4.9.3"
-price-parser = "~=0.3.3"
+requests = "==2.25.1"
+lxml = "==4.6.2"
+price-parser = "==0.3.4"
+
+[requires]
+python_version = "3.7"
