@@ -38,9 +38,9 @@ class TestParser:
             'tests',
             'it_ipad.html')
 
-        html = io.BytesIO(resource).read()
+        page = io.BytesIO(resource).read().decode('UTF-8')
 
-        products = parse_products(html)
+        products = parse_products(page)
         assert len(products) == 34
 
         product = products[0]
@@ -58,9 +58,9 @@ class TestParser:
             'tests',
             'it_mac.html')
 
-        html = io.BytesIO(resource).read()
+        page = io.BytesIO(resource).read().decode('UTF-8')
 
-        products = parse_products(html)
+        products = parse_products(page)
         assert len(products) == 82
 
         product = products[0]
