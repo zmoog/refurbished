@@ -17,7 +17,7 @@ class ResponseBuilder(object):
         Build a response object with a subset of the response object from the requests API.
         """
         resource = pkgutil.get_data('tests', self.response_filename)
-        text = io.BytesIO(resource).read()
+        text = io.BytesIO(resource).read().decode('UTF-8')
 
         mock_response = mock.Mock()
         mock_response.text = text
