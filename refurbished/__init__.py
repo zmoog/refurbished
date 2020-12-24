@@ -18,7 +18,8 @@ class Store:
 
     def __init__(self, country):
         self.country = country
-        # TODO: Check the /shop/refurbished page to determine which product families are available.
+        # TODO: Check the /shop/refurbished page to determine which
+        # product families are available.
 
     def get_iphones(self):
         """
