@@ -18,6 +18,7 @@ class Store:
 
     def __init__(self, country):
         self.country = country
+        # TODO: Check the /shop/refurbished page to determine which product families are available.
 
     def get_iphones(self):
         """
@@ -43,6 +44,12 @@ class Store:
         """
         return self._get_products('appletv')
 
+    def get_watches(self):
+        """
+        Fetch data for the Apple Watch product family.
+        """
+        return self._get_products('watch')
+
     def get_accessories(self):
         """
         Fetch data for the accessories.
@@ -67,7 +74,10 @@ class Store:
 
             resp = session.get(products_url)
 
-            if not resp.ok:
+            if resp.status_code == 404:
+                raise Exception(f'Ooops, it looks like your store doesn\'t carry those products: {family}')
+
+            elif not resp.ok:
                 raise Exception('Ooops, cannot fetch the product page.')
 
             return parser.parse_products(resp.text)
