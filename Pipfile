@@ -10,7 +10,7 @@ v = {editable = true,version = "*"}
 
 [packages]
 requests = "==2.25.1"
-lxml = "==4.5.2"
+lxml = "==4.6.2"
 price-parser = "==0.3.3"
 
 [requires]
