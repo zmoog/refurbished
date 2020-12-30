@@ -4,6 +4,8 @@ Python library and CLI tool to access the products information available on the 
 
 ## Usage
 
+Refurbished can be used as a library or as a handly CLI tool to search for refurbished products from the terminal.
+
 ### As a Library
 
 You can use it as a package in your own project:
