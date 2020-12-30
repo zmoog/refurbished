@@ -6,9 +6,23 @@ Python library and CLI tool to access the products information available on the 
 
 Refurbished can be used as a library or as a handly CLI tool to search for refurbished products from the terminal.
 
-### As a Library
+### CLI
 
-You can use it as a package in your own project:
+A quick search for Macs with a min saving or 300 EUR on the Italian store:
+
+```shell
+$ rfrb it macs --min-saving=300
+
+1979.00 1679.00 300.00 (15.159171298635673%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,4GHz e display Retina - Grigio siderale
+2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
+2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale
+2459.00 2109.00 350.00 (14.233428222854819%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
+```
+
+### Library
+
+The same search using the `refurbished` package in your own project:
+
 ```python
 >>>
 >>> from refurbished import Store
@@ -21,19 +35,6 @@ MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,4GHz e displa
 MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento 1889.00
 MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale 1889.00
 MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento 2109.00
-```
-
-### CLI
-
-Or, you can use it as a CLI tool from the terminal for a quick search:
-
-```shell
-$ rfrb it macs --min-saving=300
-
-1979.00 1679.00 300.00 (15.159171298635673%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,4GHz e display Retina - Grigio siderale
-2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
-2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale
-2459.00 2109.00 350.00 (14.233428222854819%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
 ```
 
 ## Development
