@@ -35,10 +35,11 @@ def get_products(
     min_saving_percentage: float,
     name: str
 ):
-
+    # creates a store for the selected country
     store = Store(country)
-    search_products = getattr(store, f"get_{product}", None)
 
+    # checking the selected procuct is available on this store
+    search_products = getattr(store, f"get_{product}", None)
     if not callable(search_products):
         print(f"Product {product} is not available in the {country} store")
         return
