@@ -39,7 +39,7 @@ class TestStore:
         store = Store('it')
         products = store.get_ipads()
 
-        assert len(products) == 34
+        assert len(list(products)) == 34
 
     @patch('requests.Session.get', side_effect=ResponseBuilder('it_mac.html'))
     def test_product_macs(self, _):
@@ -49,7 +49,7 @@ class TestStore:
         store = Store('it')
         products = store.get_macs()
 
-        assert len(products) == 82
+        assert len(list(products)) == 82
 
     @patch('requests.Session.get', side_effect=ResponseBuilder('it_accessories.html'))
     def test_product_accessories(self, _):
@@ -59,4 +59,4 @@ class TestStore:
         store = Store('it')
         products = store.get_accessories()
 
-        assert len(products) == 0
+        assert len(list(products)) == 0
