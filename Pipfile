@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "3.8.4"
-pytest = "6.2.1"
+pytest = "6.2.2"
 
 [packages]
 requests = "==2.25.1"
