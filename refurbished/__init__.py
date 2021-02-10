@@ -21,11 +21,11 @@ class Store:
         # TODO: Check the /shop/refurbished page to determine which
         #   product families are available.
 
-    def get_iphones(self):
+    def get_iphones(self, **kwargs):
         """
         Fetch data for the iPhone product family.
         """
-        return self._get_products('iphone')
+        return self._get_products('iphone', **kwargs)
 
     def get_ipads(self, **kwargs):
         """
