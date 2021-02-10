@@ -5,6 +5,7 @@ import pprint
 
 from refurbished.parser import parse_products
 
+
 pp = pprint.PrettyPrinter(indent=4)
 
 
@@ -16,9 +17,9 @@ class TestParser:
             'it_ipad.html'
         )
 
-        html = io.BytesIO(resource).read().decode()
+        page = io.BytesIO(resource).read().decode('UTF-8')
 
-        products = parse_products(html)
+        products = parse_products(page)
         assert len(products) == 34
 
         product = products[0]
@@ -34,9 +35,9 @@ class TestParser:
             'it_mac.html'
         )
 
-        html = io.BytesIO(resource).read().decode()
+        page = io.BytesIO(resource).read().decode('UTF-8')
 
-        products = parse_products(html)
+        products = parse_products(page)
         assert len(products) == 82
 
         product = products[0]

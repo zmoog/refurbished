@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+import click
+
+from refurbished import Store
+
+
+@click.command()
+@click.argument('country')
+@click.argument(
+    'product',
+    type=click.Choice([
+        'accessories',
+        'appletvs',
+        'macs',
+        'iphones',
+        'ipads',
+        'watches']
+    ))
+@click.option(
+    '--min-saving',
+    default=0.0,
+    help="Minimum saving")
+@click.option(
+    '--min-saving-percentage',
+    default=0.0,
+    help="Minimum saving percentage")
+@click.option(
+    '--name',
+    default=None,
+    help="Filter product by name")
+def get_products(
+    country: str,
+    product: str,
+    min_saving: float,
+    min_saving_percentage: float,
+    name: str
+):
+    # creates a store for the selected country
+    store = Store(country)
+
+    # checking the selected procuct is available on this store
+    search_products = getattr(store, f"get_{product}", None)
+    if not callable(search_products):
+        print(f"Product {product} is not available in the {country} store")
+        return
+
+    for p in search_products(
+        min_saving=min_saving,
+        min_saving_percentage=min_saving_percentage,
+        name=name
+    ):
+        print(
+            f"{p.previous_price} "
+            f"{p.price} "
+            f"{p.savings_price} "
+            f"({p.saving_percentage * 100}%) {p.name}"
+        )
+
+
+if __name__ == '__main__':
+    get_products(auto_envvar_prefix='REFURBISHED')

@@ -2,6 +2,7 @@
 Parser the Apple Refurbished pages to build useful product data.
 """
 import decimal
+
 from dataclasses import dataclass
 import re
 import bs4
@@ -28,7 +29,6 @@ class Product:
         """
         Populate fields that are derivable by other values
         """
-
         self.saving_percentage = float(self.savings_price / self.previous_price)
         self.model = re.search("/shop/product/(.[^/]*)/", self.url).group(1)
 
@@ -36,7 +36,6 @@ class Product:
         """
         A readable version for prints.
         """
-
         return f'{self.price} ({"-{:.0%}".format(self.saving_percentage)}) - [{self.model}] {self.name} {self.url}'
 
 
@@ -49,7 +48,8 @@ def parse_products(page: str):
     page = bs4.BeautifulSoup(page, 'html.parser')
 
     # Getting the domain we're on from the canonical link metadata.
-    current_parsed_url = urlparse(page.find("link", rel="canonical").attrs["href"], scheme='https')
+
+    current_parsed_url = urlparse(page.find("link", rel="canonical").attrs["href"],  scheme='https')
     store_domain = f'{current_parsed_url.scheme}://{current_parsed_url.netloc}'
 
     products = page.find("div", class_="refurbished-category-grid-no-js").ul.findAll("li")

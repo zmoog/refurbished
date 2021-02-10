@@ -1,17 +1,43 @@
 # Refurbished
 
-Python library to access the products information available on the Apple Certified Refurbished section of the Apple Store.
+Python library and CLI tool to access the products information available on the Apple Certified Refurbished section of the Apple Store.
 
-# Usage
+## Usage
 
-```python
->>> from refurbished import Store
->>> store = Store('it')
->>> macs = store.get_macs()
->>> [mac for mac in macs if mac.savings_price > 400]
-[Product(name='MacBook\xa0Pro 15,4" ricondizionato con Intel Core i9 8-core a 2,3GHz e display Retina - Grigio siderale', price=Decimal('2619.00'), previous_price=Decimal('3079.00'), savings_price=Decimal('460.00'))]
+Refurbished can be used as a library or as a handly CLI tool to search for refurbished products from the terminal.
+
+### CLI
+
+A quick search for Macs with a min saving or 300 EUR on the Italian store:
+
+```shell
+$ rfrb it macs --min-saving=300
+
+1979.00 1679.00 300.00 (15.159171298635673%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,4GHz e display Retina - Grigio siderale
+2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
+2229.00 1889.00 340.00 (15.25347689546882%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale
+2459.00 2109.00 350.00 (14.233428222854819%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
 ```
 
+### Library
+
+The same search using the `refurbished` package in your own project:
+
+```python
+>>>
+>>> from refurbished import Store
+>>> store = Store('it')
+>>>
+>>> for mac in store.get_macs(min_saving=300):
+...   print(mac.name, mac.price)
+...
+MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,4GHz e display Retina - Grigio siderale 1679.00
+MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento 1889.00
+MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale 1889.00
+MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento 2109.00
+```
+
+## Development
 ### Prerequisites
 
 You need to install the following tools:
@@ -21,7 +47,7 @@ You need to install the following tools:
 * [Pipenv](https://pipenv.kennethreitz.org/en/latest/) — tested with version 2018.11.26, it's used to streamline development in Python projects.
 
 
-### Installing
+### Checkout
 
 A step by step series of steps that tell you how to get a development env running.
 
@@ -105,6 +131,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Maurizio Branca** - *Initial work* - [zmoog](https://github.com/zmoog)
+* **Yizhou "Andi" Cui** - *Improved parser* - [AndiCui](https://github.com/AndiCui)
 
 ## License
 
