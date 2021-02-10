@@ -92,6 +92,8 @@ def _parse_savings_price(product: bs4.element.Tag) -> decimal.Decimal:
     Its value should be equal to `previous` - `current` prices.
 
     If such fragment doesn't exist, assume there is no price reduction.
+    FIXME: This assumption is not always correct. Some stores (e.g. cn) only displays the current prices.
+        Some heuristics are perhaps needed.
     """
     savingsprice_tag = product.find("span", class_="as-producttile-savingsprice")
     if savingsprice_tag:
