@@ -91,12 +91,14 @@ class Store:
             products = parser.parse_products(resp.text)
 
             # Filter products
-            products = filter(
-                lambda p:
-                    p.savings_price >= min_saving and
-                    p.saving_percentage * 100 >= min_saving_percentage and
-                    (name is None or name in p.name),
-                products
+            products = list(
+                filter(
+                    lambda p:
+                        p.savings_price >= min_saving and
+                        p.saving_percentage * 100 >= min_saving_percentage and
+                        (name is None or name in p.name),
+                    products
+                )
             )
 
             return products
