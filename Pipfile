@@ -9,8 +9,8 @@ pytest = "*"
 
 [packages]
 requests = "==2.25.1"
-lxml = "==4.6.2"
-price-parser = "==0.3.4"
+price-parser = ">=0.3.4"
+beautifulsoup4 = ">=4.9.3"
 
 [requires]
 python_version = "3.7"
