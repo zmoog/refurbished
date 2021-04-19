@@ -19,7 +19,7 @@ class Store:
     def __init__(self, country):
         self.country = country
         # TODO: Check the /shop/refurbished page to determine which
-        # product families are available.
+        #   product families are available.
 
     def get_iphones(self, **kwargs):
         """
@@ -91,12 +91,14 @@ class Store:
             products = parser.parse_products(resp.text)
 
             # Filter products
-            products = filter(
-                lambda p:
-                    p.savings_price >= min_saving and
-                    p.saving_percentage * 100 >= min_saving_percentage and
-                    (name is None or name in p.name),
-                products
+            products = list(
+                filter(
+                    lambda p:
+                        p.savings_price >= min_saving and
+                        p.saving_percentage * 100 >= min_saving_percentage and
+                        (name is None or name in p.name),
+                    products
+                )
             )
 
             return products
