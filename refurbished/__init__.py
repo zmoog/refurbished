@@ -5,7 +5,11 @@ the Apple Store http://www.apple.com/us/shop/browse/home/specialdeals
 """
 
 import requests
+
+from typing import List
+
 from . import parser
+from .model import Product
 
 REFURBISHED_BASE_URL = 'http://www.apple.com/%(country)s/shop/refurbished/%(product)s'
 
@@ -21,43 +25,43 @@ class Store:
         # TODO: Check the /shop/refurbished page to determine which
         #   product families are available.
 
-    def get_iphones(self, **kwargs):
+    def get_iphones(self, **kwargs) -> List[Product]:
         """
         Fetch data for the iPhone product family.
         """
         return self._get_products('iphone', **kwargs)
 
-    def get_ipads(self, **kwargs):
+    def get_ipads(self, **kwargs) -> List[Product]:
         """
         Fetch data for the iPad product family.
         """
         return self._get_products('ipad', **kwargs)
 
-    def get_macs(self, **kwargs):
+    def get_macs(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Mac product family.
         """
         return self._get_products('mac', **kwargs)
 
-    def get_appletvs(self, **kwargs):
+    def get_appletvs(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Apple TV product family.
         """
         return self._get_products('appletv', **kwargs)
 
-    def get_watches(self, **kwargs):
+    def get_watches(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Apple Watch product family.
         """
         return self._get_products('watch', **kwargs)
 
-    def get_accessories(self, **kwargs):
+    def get_accessories(self, **kwargs) -> List[Product]:
         """
         Fetch data for the accessories.
         """
         return self._get_products('accessories', **kwargs)
 
-    def get_clearance(self, **kwargs):
+    def get_clearance(self, **kwargs) -> List[Product]:
         """
         Fetch data for the accessories.
         """
@@ -88,7 +92,7 @@ class Store:
                 raise Exception('Ooops, cannot fetch the product page.')
 
             # Parse HTML response from Apple website
-            products = parser.parse_products(resp.text)
+            products = parser.parse_products(product_family, resp.text)
 
             # Filter products
             products = list(
