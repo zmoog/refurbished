@@ -14,6 +14,9 @@ from .model import Product
 REFURBISHED_BASE_URL = 'http://www.apple.com/%(country)s/shop/refurbished/%(product)s'
 
 
+class ProductNotFoundError(Exception):
+    pass
+
 class Store:
     """
     Get data from the Apple Certified Refurbished stores
@@ -86,7 +89,7 @@ class Store:
             resp = session.get(products_url)
 
             if resp.status_code == 404:
-                raise Exception(f'Ooops, it looks like your store doesn\'t carry those products: {product_family}')
+                raise ProductNotFoundError(f'Ooops, it looks like your store doesn\'t carry those products: {product_family}')
 
             elif not resp.ok:
                 raise Exception('Ooops, cannot fetch the product page.')

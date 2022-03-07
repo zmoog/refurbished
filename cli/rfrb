@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import click
 
-from refurbished import Store
+from refurbished import Store, ProductNotFoundError
 
 
 @click.command()
 @click.argument('country')
 @click.argument(
-    'product',
+    'product_family',
     type=click.Choice([
         'accessories',
         'appletvs',
@@ -30,7 +30,7 @@ from refurbished import Store
     help="Filter product by name")
 def get_products(
     country: str,
-    product: str,
+    product_family: str,
     min_saving: float,
     min_saving_percentage: float,
     name: str
@@ -38,23 +38,27 @@ def get_products(
     # creates a store for the selected country
     store = Store(country)
 
-    # checking the selected procuct is available on this store
-    search_products = getattr(store, f"get_{product}", None)
+    # checking the selected procuct is supported by refurbished
+    search_products = getattr(store, f"get_{product_family}", None)
     if not callable(search_products):
-        print(f"Product {product} is not available in the {country} store")
+        click.echo(f"Product family {product_family} is supported by refurbished")
         return
 
-    for p in search_products(
-        min_saving=min_saving,
-        min_saving_percentage=min_saving_percentage,
-        name=name
-    ):
-        print(
-            f"{p.previous_price} "
-            f"{p.price} "
-            f"{p.savings_price} "
-            f"({p.saving_percentage * 100}%) {p.name}"
-        )
+    try:
+        for p in search_products(
+            min_saving=min_saving,
+            min_saving_percentage=min_saving_percentage,
+            name=name
+        ):
+            click.echo(
+                f"{p.previous_price} "
+                f"{p.price} "
+                f"{p.savings_price} "
+                f"({p.saving_percentage * 100}%) {p.name}"
+            )
+    except ProductNotFoundError as e:
+        # the selected procuct is not available on this store
+        click.echo(f"Product '{product_family}' is not available in the {country} store")
 
 
 if __name__ == '__main__':
