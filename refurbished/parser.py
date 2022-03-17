@@ -3,43 +3,16 @@ Parser the Apple Refurbished pages to build useful product data.
 """
 import decimal
 
-from dataclasses import dataclass
 import re
 import bs4
 from urllib.parse import urlparse, urljoin
 import unicodedata
 from price_parser import Price
 
-
-@dataclass
-class Product:
-    """
-    Data Class representing a store product
-    """
-
-    name: str
-    url: str
-    price: decimal.Decimal
-    previous_price: decimal.Decimal
-    savings_price: decimal.Decimal
-    saving_percentage: float = 0
-    model: str = None
-
-    def __post_init__(self):
-        """
-        Populate fields that are derivable by other values
-        """
-        self.saving_percentage = float(self.savings_price / self.previous_price)
-        self.model = re.search("/shop/product/(.[^/]*)/", self.url).group(1)
-
-    def __repr__(self):
-        """
-        A readable version for prints.
-        """
-        return f'{self.price} ({"-{:.0%}".format(self.saving_percentage)}) - [{self.model}] {self.name} {self.url}'
+from .model import Product
 
 
-def parse_products(page: str):
+def parse_products(product_family: str, page: str):
     """
     Parse the HTML page source to extract product data.
     """
@@ -54,11 +27,12 @@ def parse_products(page: str):
 
     products = page.find("div", class_="refurbished-category-grid-no-js").ul.findAll("li")
     return [Product(
-        _parse_name(product),
-        _parse_url(product, store_domain),
-        _parse_current_price(product),
-        _parse_previous_price(product),
-        _parse_savings_price(product),
+        name=_parse_name(product),
+        family=product_family,
+        url=_parse_url(product, store_domain),
+        price=_parse_current_price(product),
+        previous_price=_parse_previous_price(product),
+        savings_price=_parse_savings_price(product),
     )
         for product in products
     ]
