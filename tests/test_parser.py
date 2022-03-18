@@ -86,3 +86,24 @@ class TestParser:
         assert product.price == decimal.Decimal('85.00')
         assert product.previous_price == decimal.Decimal('99.00')
         assert product.savings_price == decimal.Decimal('14.00')
+
+    def test_product_page_with_generic_info_and_no_availability(self):
+        resource = pkgutil.get_data(
+            'tests',
+            'fr_ipad.html'
+        )
+
+        html = io.BytesIO(resource).read().decode()
+
+        # As of today, the French store only sells very few product
+        # categories (mac, appletv, clearance).
+        #
+        # For some products (iphone, watch) we get the courtesy
+        # "not found" page. For other product  (for example, ipad),
+        # we get a page with generic information, differenct structure,
+        # and no product info.
+        #
+        # For cases like this, we want to receive an empty list of
+        # product instead of an error.
+        products = parse_products(html)
+        assert len(products) == 0
