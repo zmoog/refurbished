@@ -2,6 +2,7 @@
 Parser the Apple Refurbished pages to build useful product data.
 """
 import decimal
+from typing import List
 
 import re
 import bs4
@@ -21,11 +22,21 @@ def parse_products(product_family: str, page: str):
     page = bs4.BeautifulSoup(page, 'html.parser')
 
     # Getting the domain we're on from the canonical link metadata.
-
     current_parsed_url = urlparse(page.find("link", rel="canonical").attrs["href"],  scheme='https')
     store_domain = f'{current_parsed_url.scheme}://{current_parsed_url.netloc}'
 
-    products = page.find("div", class_="refurbished-category-grid-no-js").ul.findAll("li")
+    product_section = page.find("div", class_="refurbished-category-grid-no-js")
+    if product_section is None:
+        # For some products (for example, ipad on the 'fr' store) we get a
+        # page with generic product information, but differenct structure
+        # and no products info.
+        #
+        # For cases like this, we want to receive an empty list of
+        # product instead of an error.        
+        return []
+
+    products = product_section.ul.findAll("li")
+
     return [Product(
         name=_parse_name(product),
         family=product_family,
