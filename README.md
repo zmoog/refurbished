@@ -1,6 +1,6 @@
 # Refurbished
 
-Refurbished is a Python library and CLI tool to access the products information available on the Apple Certified Refurbished section of the Apple Store.
+Refurbished is a Python library and CLI tool to access the products information available on the [Apple Certified Refurbished](https://www.apple.com/shop/refurbished) section of the Apple Store.
 
 ## Usage
 
