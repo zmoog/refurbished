@@ -1,6 +1,6 @@
 # Refurbished
 
-Python library and CLI tool to access the products information available on the Apple Certified Refurbished section of the Apple Store.
+Refurbished is a Python library and CLI tool to access the products information available on the [Apple Certified Refurbished](https://www.apple.com/shop/refurbished) section of the Apple Store.
 
 ## Usage
 
@@ -23,7 +23,7 @@ $ rfrb it macs --min-saving=300
 
 The same search using the `refurbished` package in your own project:
 
-```python
+```shell
 >>>
 >>> from refurbished import Store
 >>> store = Store('it')
@@ -38,14 +38,13 @@ MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display 
 ```
 
 ## Development
+
 ### Prerequisites
 
 You need to install the following tools:
 
 * [Git](https://git-scm.com)
-* [Python](https://www.python.org) 3.7, the language used to write all the application code. You should evaluate [pyenv](https://github.com/pyenv/pyenv#installation) as tool to manage Python versions.
-* [Pipenv](https://pipenv.kennethreitz.org/en/latest/) — tested with version 2018.11.26, it's used to streamline development in Python projects.
-
+* [Python](https://www.python.org) 3.7 or later, the language used to write all the application code.
 
 ### Checkout
 
@@ -53,31 +52,31 @@ A step by step series of steps that tell you how to get a development env runnin
 
 First, you need to get the project source code:
 
-```bash
-$ git clone https://github.com/zmoog/refurbished.git
+```shell
+git clone https://github.com/zmoog/refurbished.git
 
-$ cd refurbished
+cd refurbished
 ```
 
 Create/activate the virtual environment for this project:
 
-```bash
-$ pipenv shell
-```
+```shell
+python -m venv venv
 
+source ./venv/bin/activate
+```
 
 Install the project dependencies:
 
-```bash
+```shell
 # installs the Python deps
-$ pipenv install -dev
+$ pip install -r requirements-*
 ```
-
 
 Set some environment variables and aliases:
 
-```bash
-$ export PYTHONPATH=`pwd`:$PYTHONPATH 
+```shell
+export PYTHONPATH=`pwd`:$PYTHONPATH 
 ```
 
 Let's run the lambda function locally to see if it's all working!
@@ -99,26 +98,25 @@ The library uses pytest to run all its tests.
 
 You can run the test suite with a single command:
 
-```bash
-$ pipenv run pytest tests
+```shell
+$ pytest tests
+======================================================================================================= test session starts ========================================================================================================
+platform darwin -- Python 3.9.10, pytest-7.0.1, pluggy-1.0.0
+rootdir: /Users/mbranca/code/projects/zmoog/refurbished
+collected 11 items
+
+tests/test_parser.py .....                                                                                                                                                                                                   [ 45%]
+tests/test_refurbished.py ......                                                                                                                                                                                             [100%]
+
+======================================================================================================== 11 passed in 0.76s ========================================================================================================
+(
 ```
-
-### And coding style tests
-
-Coding style is enforced using `flake8`.
-
-```bash
-$ pipenv run flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
-```
-
-
 
 ## Built With
 
-* [requests](https://requests.readthedocs.io/en/master/)
-* [lxml](https://lxml.de)
+* [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
 * [price-parser](https://github.com/scrapinghub/price-parser)
-
+* [requests](https://requests.readthedocs.io/en/master/)
 
 ## Contributing
 

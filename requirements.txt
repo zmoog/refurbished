@@ -1,0 +1,4 @@
+beautifulsoup4==4.9.3
+click==7.1.2
+requests==2.25.1
+price-parser==0.3.4
