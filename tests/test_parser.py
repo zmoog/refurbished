@@ -24,8 +24,8 @@ class TestParser:
         )
         assert product.family == "ipad"
         assert (
-            product.url
-            == "https://www.apple.com/it/shop/product/FR7K2TY/A/Refurbished-iPad-Wi-Fi-128GB-Silver-6th-Generation"
+            product.url == "https://www.apple.com/it/shop/product/FR7K2TY/"
+            "A/Refurbished-iPad-Wi-Fi-128GB-Silver-6th-Generation"
         )
         assert product.price == decimal.Decimal("389.00")
         assert product.previous_price == decimal.Decimal("449.00")
@@ -100,5 +100,5 @@ class TestParser:
         #
         # For cases like this, we want to receive an empty list of
         # product instead of an error.
-        products = parse_products(html)
+        products = parse_products("ipad", html)
         assert len(products) == 0

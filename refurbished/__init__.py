@@ -93,7 +93,8 @@ class Store:
 
             if resp.status_code == 404:
                 raise ProductNotFoundError(
-                    f"Ooops, it looks like your store doesn't carry those products: {product_family}"
+                    "Ooops, it looks like your store doesn't carry "
+                    f"those products: {product_family}"
                 )
 
             elif not resp.ok:

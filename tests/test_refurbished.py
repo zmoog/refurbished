@@ -13,7 +13,8 @@ class ResponseBuilder(object):
 
     def _build_response(self):
         """
-        Build a response object with a subset of the response object from the requests API.
+        Build a response object with a subset of the response object
+        from the requests API.
         """
         resource = pkgutil.get_data("tests", self.response_filename)
         text = io.BytesIO(resource).read().decode("UTF-8")

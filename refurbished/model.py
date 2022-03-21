@@ -31,4 +31,5 @@ class Product:
         """
         A readable version for prints.
         """
-        return f'{self.price} ({"-{:.0%}".format(self.saving_percentage)}) - [{self.model}] {self.name} {self.url}'
+        return f"{self.price} ({'-{:.0%}'.format(self.saving_percentage)}) "
+        "- [{self.model}] {self.name} {self.url}"

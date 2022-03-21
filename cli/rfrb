@@ -47,10 +47,11 @@ def get_products(
                 f"{p.savings_price} "
                 f"({p.saving_percentage * 100}%) {p.name}"
             )
-    except ProductNotFoundError as e:
+    except ProductNotFoundError:
         # the selected procuct is not available on this store
         click.echo(
-            f"Product '{product_family}' is not available in the {country} store"
+            f"Product '{product_family}' is "
+            "not available in the {country} store"
         )
 
 

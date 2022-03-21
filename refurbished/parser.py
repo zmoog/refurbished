@@ -2,7 +2,6 @@
 Parser the Apple Refurbished pages to build useful product data.
 """
 import decimal
-import re
 import unicodedata
 from typing import List
 from urllib.parse import urljoin, urlparse
@@ -13,7 +12,7 @@ from price_parser import Price
 from .model import Product
 
 
-def parse_products(product_family: str, page: str):
+def parse_products(product_family: str, page: str) -> List[Product]:
     """
     Parse the HTML page source to extract product data.
     """
@@ -82,8 +81,10 @@ def _parse_savings_price(product: bs4.element.Tag) -> decimal.Decimal:
     Its value should be equal to `previous` - `current` prices.
 
     If such fragment doesn't exist, assume there is no price reduction.
-    FIXME: This assumption is not always correct. Some stores (e.g. cn) only displays the current prices.
-        Some heuristics are perhaps needed.
+    FIXME: This assumption is not always correct. Some stores (e.g. cn)
+    only displays the current prices.
+
+    Some heuristics are perhaps needed.
     """
     savingsprice_tag = product.find(
         "span", class_="as-producttile-savingsprice"
@@ -96,8 +97,10 @@ def _parse_savings_price(product: bs4.element.Tag) -> decimal.Decimal:
 
 def _parse_url(product: bs4.element.Tag, store_domain: str) -> str:
     """
-    Parse the fragment with product URL and strip away query strings and fragments.
-    Just appending the relative path onto apple.com does not work for all regions.
+    Parse the fragment with product URL and strip away query strings
+    and fragments.
+    Just appending the relative path onto apple.com does not work
+    for all regions.
     For example, apple.com/cn redirects to apple.com.cn.
     All links are then relative to the .cn domain.
     """
