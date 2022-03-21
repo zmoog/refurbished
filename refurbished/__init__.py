@@ -4,9 +4,9 @@ Get information published in the Refurbished and Clearance section of
 the Apple Store http://www.apple.com/us/shop/browse/home/specialdeals
 """
 
-import requests
-
 from typing import List
+
+import requests
 
 from . import parser
 from .model import Product

@@ -2,12 +2,12 @@
 Parser the Apple Refurbished pages to build useful product data.
 """
 import decimal
-from typing import List
-
 import re
-import bs4
-from urllib.parse import urlparse, urljoin
 import unicodedata
+from typing import List
+from urllib.parse import urljoin, urlparse
+
+import bs4
 from price_parser import Price
 
 from .model import Product

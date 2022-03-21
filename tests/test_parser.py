@@ -1,10 +1,9 @@
 import decimal
-import pkgutil
 import io
+import pkgutil
 import pprint
 
 from refurbished.parser import parse_products
-
 
 pp = pprint.PrettyPrinter(indent=4)
 

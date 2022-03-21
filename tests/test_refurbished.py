@@ -1,5 +1,5 @@
-import pkgutil
 import io
+import pkgutil
 from unittest import mock
 from unittest.mock import patch
 
