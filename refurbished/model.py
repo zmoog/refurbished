@@ -22,11 +22,14 @@ class Product:
         """
         Populate fields that are derivable by other values
         """
-        self.saving_percentage = float(self.savings_price / self.previous_price)
+        self.saving_percentage = float(
+            self.savings_price / self.previous_price
+        )
         self.model = re.search("/shop/product/(.[^/]*)/", self.url).group(1)
 
     def __repr__(self):
         """
         A readable version for prints.
         """
-        return f'{self.price} ({"-{:.0%}".format(self.saving_percentage)}) - [{self.model}] {self.name} {self.url}'
+        return f"{self.price} ({'-{:.0%}'.format(self.saving_percentage)}) "
+        "- [{self.model}] {self.name} {self.url}"

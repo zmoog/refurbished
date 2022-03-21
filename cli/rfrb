@@ -1,39 +1,28 @@
 #!/usr/bin/env python
 import click
 
-from refurbished import Store, ProductNotFoundError
+from refurbished import ProductNotFoundError, Store
 
 
 @click.command()
-@click.argument('country')
+@click.argument("country")
 @click.argument(
-    'product_family',
-    type=click.Choice([
-        'accessories',
-        'appletvs',
-        'macs',
-        'iphones',
-        'ipads',
-        'watches']
-    ))
+    "product_family",
+    type=click.Choice(
+        ["accessories", "appletvs", "macs", "iphones", "ipads", "watches"]
+    ),
+)
+@click.option("--min-saving", default=0.0, help="Minimum saving")
 @click.option(
-    '--min-saving',
-    default=0.0,
-    help="Minimum saving")
-@click.option(
-    '--min-saving-percentage',
-    default=0.0,
-    help="Minimum saving percentage")
-@click.option(
-    '--name',
-    default=None,
-    help="Filter product by name")
+    "--min-saving-percentage", default=0.0, help="Minimum saving percentage"
+)
+@click.option("--name", default=None, help="Filter product by name")
 def get_products(
     country: str,
     product_family: str,
     min_saving: float,
     min_saving_percentage: float,
-    name: str
+    name: str,
 ):
     # creates a store for the selected country
     store = Store(country)
@@ -41,14 +30,16 @@ def get_products(
     # checking the selected procuct is supported by refurbished
     search_products = getattr(store, f"get_{product_family}", None)
     if not callable(search_products):
-        click.echo(f"Product family {product_family} is supported by refurbished")
+        click.echo(
+            f"Product family {product_family} is supported by refurbished"
+        )
         return
 
     try:
         for p in search_products(
             min_saving=min_saving,
             min_saving_percentage=min_saving_percentage,
-            name=name
+            name=name,
         ):
             click.echo(
                 f"{p.previous_price} "
@@ -56,10 +47,13 @@ def get_products(
                 f"{p.savings_price} "
                 f"({p.saving_percentage * 100}%) {p.name}"
             )
-    except ProductNotFoundError as e:
+    except ProductNotFoundError:
         # the selected procuct is not available on this store
-        click.echo(f"Product '{product_family}' is not available in the {country} store")
+        click.echo(
+            f"Product '{product_family}' is "
+            "not available in the {country} store"
+        )
 
 
-if __name__ == '__main__':
-    get_products(auto_envvar_prefix='REFURBISHED')
+if __name__ == "__main__":
+    get_products(auto_envvar_prefix="REFURBISHED")
