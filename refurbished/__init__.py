@@ -11,11 +11,14 @@ from typing import List
 from . import parser
 from .model import Product
 
-REFURBISHED_BASE_URL = 'http://www.apple.com/%(country)s/shop/refurbished/%(product)s'
+REFURBISHED_BASE_URL = (
+    "http://www.apple.com/%(country)s/shop/refurbished/%(product)s"
+)
 
 
 class ProductNotFoundError(Exception):
     pass
+
 
 class Store:
     """
@@ -32,50 +35,50 @@ class Store:
         """
         Fetch data for the iPhone product family.
         """
-        return self._get_products('iphone', **kwargs)
+        return self._get_products("iphone", **kwargs)
 
     def get_ipads(self, **kwargs) -> List[Product]:
         """
         Fetch data for the iPad product family.
         """
-        return self._get_products('ipad', **kwargs)
+        return self._get_products("ipad", **kwargs)
 
     def get_macs(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Mac product family.
         """
-        return self._get_products('mac', **kwargs)
+        return self._get_products("mac", **kwargs)
 
     def get_appletvs(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Apple TV product family.
         """
-        return self._get_products('appletv', **kwargs)
+        return self._get_products("appletv", **kwargs)
 
     def get_watches(self, **kwargs) -> List[Product]:
         """
         Fetch data for the Apple Watch product family.
         """
-        return self._get_products('watch', **kwargs)
+        return self._get_products("watch", **kwargs)
 
     def get_accessories(self, **kwargs) -> List[Product]:
         """
         Fetch data for the accessories.
         """
-        return self._get_products('accessories', **kwargs)
+        return self._get_products("accessories", **kwargs)
 
     def get_clearance(self, **kwargs) -> List[Product]:
         """
         Fetch data for the accessories.
         """
-        return self._get_products('clearance', **kwargs)
+        return self._get_products("clearance", **kwargs)
 
     def _get_products(
         self,
         product_family,
         min_saving=0.0,
         min_saving_percentage=0.0,
-        name=None
+        name=None,
     ):
         """
         Fetch product information from the Apple refurbished page.
@@ -89,10 +92,12 @@ class Store:
             resp = session.get(products_url)
 
             if resp.status_code == 404:
-                raise ProductNotFoundError(f'Ooops, it looks like your store doesn\'t carry those products: {product_family}')
+                raise ProductNotFoundError(
+                    f"Ooops, it looks like your store doesn't carry those products: {product_family}"
+                )
 
             elif not resp.ok:
-                raise Exception('Ooops, cannot fetch the product page.')
+                raise Exception("Ooops, cannot fetch the product page.")
 
             # Parse HTML response from Apple website
             products = parser.parse_products(product_family, resp.text)
@@ -100,11 +105,10 @@ class Store:
             # Filter products
             products = list(
                 filter(
-                    lambda p:
-                        p.savings_price >= min_saving and
-                        p.saving_percentage * 100 >= min_saving_percentage and
-                        (name is None or name in p.name),
-                    products
+                    lambda p: p.savings_price >= min_saving
+                    and p.saving_percentage * 100 >= min_saving_percentage
+                    and (name is None or name in p.name),
+                    products,
                 )
             )
 
