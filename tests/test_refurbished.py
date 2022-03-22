@@ -1,29 +1,6 @@
-import io
-import pkgutil
-from unittest import mock
 from unittest.mock import patch
 
-
-class ResponseBuilder(object):
-    def __init__(self, response_filename):
-        self.response_filename = response_filename
-
-    def __call__(self, _):
-        return self._build_response()
-
-    def _build_response(self):
-        """
-        Build a response object with a subset of the response object
-        from the requests API.
-        """
-        resource = pkgutil.get_data("tests", self.response_filename)
-        text = io.BytesIO(resource).read().decode("UTF-8")
-
-        mock_response = mock.Mock()
-        mock_response.text = text
-        mock_response.ok = True
-
-        return mock_response
+from . import ResponseBuilder
 
 
 class TestStore:
