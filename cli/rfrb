@@ -51,7 +51,7 @@ def get_products(
         # the selected procuct is not available on this store
         click.echo(
             f"Product '{product_family}' is "
-            "not available in the {country} store"
+            f"not available in the '{country}' store"
         )
 
 

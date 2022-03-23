@@ -19,6 +19,8 @@ lint-flake8:
 	# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
 	flake8 ${sources} --count --exit-zero --max-complexity=10 --max-line-length=${line_length} --statistics
 
+fix-lint: fix-black fix-isort  ## Fix linting
+
 fix-black:
 	@black ${black_options}
 
@@ -26,4 +28,6 @@ fix-isort:
 	@isort ${isort_options}
 
 test:
-	pytest
+	pytest tests
+
+ready: lint test
