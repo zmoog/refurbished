@@ -5,6 +5,7 @@ with open("README.md") as f:
     long_description = f.read()
 
 NAME = "refurbished"
+VERSION = "0.7.1"
 REQUIRES = [
     "beautifulsoup4 >= 4.9.3",
     "requests >= 2.25.1",
@@ -14,7 +15,7 @@ REQUIRES = [
 
 setup(
     name=NAME,
-    version="0.7.0",
+    version=VERSION,
     description="Library to search refurbished products on the Apple Store",
     author="Maurizio Branca",
     author_email="maurizio.branca@gmail.com",
