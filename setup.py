@@ -9,7 +9,7 @@ REQUIRES = [
     "beautifulsoup4 >= 4.9.3",
     "requests >= 2.25.1",
     "price-parser == 0.3.4",
-    "click == 8.0.4"
+    "click == 8.1.0"
 ]
 
 setup(
