@@ -109,4 +109,4 @@ class TestParser:
         html = io.BytesIO(resource).read().decode()
 
         products = parse_products("mac", html)
-        assert len(products) > 0
+        assert len(products) == 138
