@@ -28,13 +28,11 @@ def parse_products(product_family: str, page: str) -> List[Product]:
 
     # CSS classes for the products list.
     css_classes = [
-       "refurbished-category-grid-no-js",  # used by most stores
-       "rf-refurb-category-grid-no-js"  # used by the "us" store
+        "refurbished-category-grid-no-js",  # used by most stores
+        "rf-refurb-category-grid-no-js",  # used by the "us" store
     ]
 
-    product_section = page.find(
-        "div", class_=css_classes
-    )
+    product_section = page.find("div", class_=css_classes)
 
     if product_section is None:
         # For some products (for example, ipad on the 'fr' store) we get a
