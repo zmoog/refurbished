@@ -26,9 +26,16 @@ def parse_products(product_family: str, page: str) -> List[Product]:
     )
     store_domain = f"{current_parsed_url.scheme}://{current_parsed_url.netloc}"
 
+    # CSS classes for the products list.
+    css_classes = [
+       "refurbished-category-grid-no-js",  # used by most stores
+       "rf-refurb-category-grid-no-js"  # used by the "us" store
+    ]
+
     product_section = page.find(
-        "div", class_="refurbished-category-grid-no-js"
+        "div", class_=css_classes
     )
+
     if product_section is None:
         # For some products (for example, ipad on the 'fr' store) we get a
         # page with generic product information, but differenct structure
