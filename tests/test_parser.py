@@ -102,3 +102,11 @@ class TestParser:
         # product instead of an error.
         products = parse_products("ipad", html)
         assert len(products) == 0
+
+    def test_product_mac_us(self):
+        resource = pkgutil.get_data("tests", "us_mac.html")
+
+        html = io.BytesIO(resource).read().decode()
+
+        products = parse_products("mac", html)
+        assert len(products) == 138
