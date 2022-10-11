@@ -30,4 +30,4 @@ fix-isort:
 test:
 	pytest tests
 
-ready: lint test
+ready: lint test ## Make sure we're ready to ship the code in a PR
