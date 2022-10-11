@@ -78,6 +78,8 @@ class Store:
         product_family,
         min_saving=0.0,
         min_saving_percentage=0.0,
+        max_price=None,
+        max_previous_price=None,
         name=None,
     ):
         """
@@ -88,7 +90,6 @@ class Store:
         )
 
         with requests.Session() as session:
-
             resp = session.get(products_url)
 
             if resp.status_code == 404:
@@ -96,21 +97,25 @@ class Store:
                     "Ooops, it looks like your store doesn't carry "
                     f"those products: {product_family}"
                 )
-
             elif not resp.ok:
                 raise Exception("Ooops, cannot fetch the product page.")
 
             # Parse HTML response from Apple website
             products = parser.parse_products(product_family, resp.text)
 
-            # Filter products
-            products = list(
-                filter(
-                    lambda p: p.savings_price >= min_saving
-                    and p.saving_percentage * 100 >= min_saving_percentage
-                    and (name is None or name in p.name),
-                    products,
+            # set up the criteria to filter the products
+            criteria = (
+                lambda p: p.savings_price >= min_saving
+                and p.saving_percentage * 100 >= min_saving_percentage
+                and (max_price is None or p.price <= max_price)
+                and (
+                    max_previous_price is None
+                    or p.previous_price <= max_previous_price
                 )
+                and (name is None or name in p.name)
             )
+
+            # Filter products
+            products = list(filter(criteria, products))
 
             return products

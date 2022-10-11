@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import decimal
+
 import click
 
 from refurbished import ProductNotFoundError, Store
@@ -16,12 +18,23 @@ from refurbished import ProductNotFoundError, Store
 @click.option(
     "--min-saving-percentage", default=0.0, help="Minimum saving percentage"
 )
+@click.option(
+    "--max-price", default=None, type=decimal.Decimal, help="Maximum price"
+)
+@click.option(
+    "--max-previous-price",
+    default=None,
+    type=decimal.Decimal,
+    help="Maximum previous price",
+)
 @click.option("--name", default=None, help="Filter product by name")
 def get_products(
     country: str,
     product_family: str,
     min_saving: float,
     min_saving_percentage: float,
+    max_price: decimal.Decimal,
+    max_previous_price: decimal.Decimal,
     name: str,
 ):
     # creates a store for the selected country
@@ -39,6 +52,8 @@ def get_products(
         for p in search_products(
             min_saving=min_saving,
             min_saving_percentage=min_saving_percentage,
+            max_price=max_price,
+            max_previous_price=max_previous_price,
             name=name,
         ):
             click.echo(
