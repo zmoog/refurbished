@@ -41,7 +41,7 @@ class TestCLI:
         assert result.exit_code == 0
         assert (
             # this is the only product that matches the max price
-            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)" # noqa
+            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)"  # noqa
             in result.output
         )
 
@@ -59,6 +59,6 @@ class TestCLI:
         assert result.exit_code == 0
         assert (
             # this is the only product that matches the max previous price
-            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)" # noqa
+            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)"  # noqa
             in result.output
         )
