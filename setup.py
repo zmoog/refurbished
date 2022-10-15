@@ -6,15 +6,16 @@ with open("README.md") as f:
 
 NAME = "refurbished"
 REQUIRES = [
-    "beautifulsoup4 >= 4.9.3",
-    "requests >= 2.25.1",
+    "beautifulsoup4 >= 4.11.1",
+    "requests >= 2.28.1",
     "price-parser == 0.3.4",
+    "pydantic == 1.10.2",
     "click == 8.1.3"
 ]
 
 setup(
     name=NAME,
-    version="0.8.0",
+    version="0.9.2",
     description="Library to search refurbished products on the Apple Store",
     author="Maurizio Branca",
     author_email="maurizio.branca@gmail.com",
