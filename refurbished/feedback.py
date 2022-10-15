@@ -19,7 +19,8 @@ class Feedback:
             click.echo(
                 result.str(),
                 # delefate newlines to the result class
-                nl=False)
+                nl=False,
+            )
         elif self.format == "json":
             click.echo(
                 json.dumps(result.data(), indent=2, default=pydantic_encoder),
