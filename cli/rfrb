@@ -3,7 +3,7 @@ import decimal
 
 import click
 
-from refurbished import ProductNotFoundError, Store
+from refurbished import ProductNotFoundError, Store, feedback
 
 
 @click.command()
@@ -28,6 +28,7 @@ from refurbished import ProductNotFoundError, Store
     help="Maximum previous price",
 )
 @click.option("--name", default=None, help="Filter product by name")
+@click.option("--format", default="text", help="Set output format")
 def get_products(
     country: str,
     product_family: str,
@@ -36,37 +37,40 @@ def get_products(
     max_price: decimal.Decimal,
     max_previous_price: decimal.Decimal,
     name: str,
+    format: str,
 ):
+    # set feedback
+    feedback.set_format(format)
+
     # creates a store for the selected country
     store = Store(country)
 
     # checking the selected procuct is supported by refurbished
     search_products = getattr(store, f"get_{product_family}", None)
     if not callable(search_products):
-        click.echo(
-            f"Product family {product_family} is supported by refurbished"
+        feedback.echo(
+            f"Product family {product_family} is not supported by refurbished",
+            err=True,
         )
         return
 
     try:
-        for p in search_products(
+        products = search_products(
             min_saving=min_saving,
             min_saving_percentage=min_saving_percentage,
             max_price=max_price,
             max_previous_price=max_previous_price,
             name=name,
-        ):
-            click.echo(
-                f"{p.previous_price} "
-                f"{p.price} "
-                f"{p.savings_price} "
-                f"({p.saving_percentage * 100}%) {p.name}"
-            )
+        )
+
+        feedback.result(feedback.ProductsResult(products))
+
     except ProductNotFoundError:
         # the selected procuct is not available on this store
-        click.echo(
+        feedback.echo(
             f"Product '{product_family}' is "
-            f"not available in the '{country}' store"
+            f"not available in the '{country}' store",
+            err=True,
         )
 
 
