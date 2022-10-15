@@ -34,7 +34,7 @@ $ rfrb it ipads --max-price 539
 ##### json
 
 ```shell
-$ python cli/rfrb it ipads --max-price 539 --format json
+$ rfrb it ipads --max-price 539 --format json
 [
   {
     "name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)",
@@ -65,8 +65,6 @@ $ python cli/rfrb it ipads --max-price 539 --format json
 $ rfrb it ipads --max-price 539 --format ndjson
 {"name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione", "price": 479.0, "previous_price": 559.0, "savings_price": 80.0, "saving_percentage": 0.14311270125223613, "model": "FUUL2TY"}
 {"name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione", "price": 539.0, "previous_price": 639.0, "savings_price": 100.0, "saving_percentage": 0.1564945226917058, "model": "FYFQ2TY"}
-{"name": "iPad Air Wi-Fi 64GB ricondizionato - Verde (quarta generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FYFR2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Verde-quarta-generazione", "price": 539.0, "previous_price": 639.0, "savings_price": 100.0, "saving_percentage": 0.1564945226917058, "model": "FYFR2TY"}
-
 ```
 
 
