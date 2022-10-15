@@ -19,6 +19,55 @@ $ rfrb it macs --min-saving=300
 2459.00 2109.00 350.00 (14.233428222854819%) MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento
 ```
 
+#### Output formats
+
+Refurbished supports several output formats.
+
+##### text
+
+```shell
+$ rfrb it ipads --max-price 539
+559.00 479.00 80.00 (14.311270125223613%) iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)
+639.00 539.00 100.00 (15.64945226917058%) iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)
+```
+
+##### json
+
+```shell
+$ rfrb it ipads --max-price 539 --format json
+[
+  {
+    "name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)",
+    "family": "ipad",
+    "url": "https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione",
+    "price": 479.0,
+    "previous_price": 559.0,
+    "savings_price": 80.0,
+    "saving_percentage": 0.14311270125223613,
+    "model": "FUUL2TY"
+  },
+  {
+    "name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)",
+    "family": "ipad",
+    "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione",
+    "price": 539.0,
+    "previous_price": 639.0,
+    "savings_price": 100.0,
+    "saving_percentage": 0.1564945226917058,
+    "model": "FYFQ2TY"
+  }
+]
+```
+
+##### ndjson
+
+```shell
+$ rfrb it ipads --max-price 539 --format ndjson
+{"name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione", "price": 479.0, "previous_price": 559.0, "savings_price": 80.0, "saving_percentage": 0.14311270125223613, "model": "FUUL2TY"}
+{"name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione", "price": 539.0, "previous_price": 639.0, "savings_price": 100.0, "saving_percentage": 0.1564945226917058, "model": "FYFQ2TY"}
+```
+
+
 ### Library
 
 The same search using the `refurbished` package in your own project:
@@ -116,6 +165,7 @@ tests/test_refurbished.py ......                                                
 
 * [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
 * [price-parser](https://github.com/scrapinghub/price-parser)
+* [pydantic](https://pydantic-docs.helpmanual.io/)
 * [requests](https://requests.readthedocs.io/en/master/)
 
 ## Contributing

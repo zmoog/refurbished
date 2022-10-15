@@ -16,12 +16,12 @@ class TestCLI:
         "requests.Session.get",
         side_effect=ResponseBuilder("page_not_found.html", status_code=404),
     )
-    def test_product_ipad_it(self, _):
+    def test_product_ipad_it(self, _, cli_runner: CliRunner):
         runner = CliRunner()
 
         result = runner.invoke(rfrb.get_products, ["be", "macs"])
 
-        assert result.exit_code == 0
+        assert result.exit_code == 0, result.output
         assert (
             "Product 'macs' is not available in the 'be' store"
             in result.output
@@ -31,7 +31,7 @@ class TestCLI:
         "requests.Session.get",
         side_effect=ResponseBuilder("it_ipad.html"),
     )
-    def test_max_price(self, _):
+    def test_max_price(self, _, cli_runner: CliRunner):
         runner = CliRunner()
 
         result = runner.invoke(
@@ -49,7 +49,7 @@ class TestCLI:
         "requests.Session.get",
         side_effect=ResponseBuilder("it_ipad.html"),
     )
-    def test_max_previous_price(self, _):
+    def test_max_previous_price(self, _, cli_runner: CliRunner):
         runner = CliRunner()
 
         result = runner.invoke(

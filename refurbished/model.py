@@ -1,6 +1,8 @@
 import decimal
 import re
-from dataclasses import dataclass
+
+# from dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
