@@ -16,16 +16,23 @@ class Feedback:
 
     def result(self, result):
         if self.format == "text":
-            click.echo(result.str(), nl=False)
+            click.echo(
+                result.str(),
+                # delefate newlines to the result class
+                nl=False)
         elif self.format == "json":
             click.echo(
                 json.dumps(result.data(), indent=2, default=pydantic_encoder),
+                # delegate newline to json.dumps
                 nl=False,
             )
         elif self.format == "ndjson":
             for product in result.data():
                 click.echo(
-                    json.dumps(product, default=pydantic_encoder), nl=False
+                    json.dumps(product, default=pydantic_encoder),
+                    # The newline is required by the format to separate the
+                    # JSON objects
+                    nl=True,
                 )
 
 
