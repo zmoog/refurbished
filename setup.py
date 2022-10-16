@@ -15,7 +15,7 @@ REQUIRES = [
 
 setup(
     name=NAME,
-    version="0.9.2",
+    version="0.10.0",
     description="Library to search refurbished products on the Apple Store",
     author="Maurizio Branca",
     author_email="maurizio.branca@gmail.com",
