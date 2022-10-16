@@ -12,7 +12,7 @@ from . import parser
 from .model import Product
 
 REFURBISHED_BASE_URL = (
-    "http://www.apple.com/%(country)s/shop/refurbished/%(product)s"
+    "http://www.apple.com/%(store)s/shop/refurbished/%(product)s"
 )
 
 
@@ -23,11 +23,11 @@ class ProductNotFoundError(Exception):
 class Store:
     """
     Get data from the Apple Certified Refurbished stores
-    (the store is different for each country where Apple operates).
+    (the store is different for each store where Apple operates).
     """
 
-    def __init__(self, country):
-        self.country = country
+    def __init__(self, store):
+        self.store = store
         # TODO: Check the /shop/refurbished page to determine which
         #   product families are available.
 
@@ -86,7 +86,7 @@ class Store:
         Fetch product information from the Apple refurbished page.
         """
         products_url = REFURBISHED_BASE_URL % dict(
-            country=self.country, product=product_family
+            store=self.store, product=product_family
         )
 
         with requests.Session() as session:
@@ -101,7 +101,9 @@ class Store:
                 raise Exception("Ooops, cannot fetch the product page.")
 
             # Parse HTML response from Apple website
-            products = parser.parse_products(product_family, resp.text)
+            products = parser.parse_products(
+                product_family, self.store, resp.text
+            )
 
             # set up the criteria to filter the products
             criteria = (

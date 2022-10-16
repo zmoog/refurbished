@@ -12,7 +12,11 @@ from price_parser import Price
 from .model import Product
 
 
-def parse_products(product_family: str, page: str) -> List[Product]:
+def parse_products(
+    family: str,
+    store: str,
+    page: str,
+) -> List[Product]:
     """
     Parse the HTML page source to extract product data.
     """
@@ -48,7 +52,8 @@ def parse_products(product_family: str, page: str) -> List[Product]:
     return [
         Product(
             name=_parse_name(product),
-            family=product_family,
+            family=family,
+            store=store,
             url=_parse_url(product, store_domain),
             price=_parse_current_price(product),
             previous_price=_parse_previous_price(product),

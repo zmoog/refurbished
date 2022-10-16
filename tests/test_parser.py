@@ -14,7 +14,7 @@ class TestParser:
 
         page = io.BytesIO(resource).read().decode("UTF-8")
 
-        products = parse_products("ipad", page)
+        products = parse_products("ipad", "it", page)
         assert len(products) == 34
 
         product = products[0]
@@ -36,7 +36,7 @@ class TestParser:
 
         page = io.BytesIO(resource).read().decode("UTF-8")
 
-        products = parse_products("mac", page)
+        products = parse_products("mac", "it", page)
         assert len(products) == 82
 
         product = products[0]
@@ -55,7 +55,7 @@ class TestParser:
 
         html = io.BytesIO(resource).read().decode()
 
-        products = parse_products("watch", html)
+        products = parse_products("watch", "cn", html)
         assert len(products) == 35
 
         product = products[0]
@@ -74,7 +74,7 @@ class TestParser:
 
         html = io.BytesIO(resource).read().decode()
 
-        products = parse_products("accessory", html)
+        products = parse_products("accessory", "us", html)
         assert len(products) == 2
 
         product = products[0]
@@ -100,7 +100,7 @@ class TestParser:
         #
         # For cases like this, we want to receive an empty list of
         # product instead of an error.
-        products = parse_products("ipad", html)
+        products = parse_products("ipad", "fr", html)
         assert len(products) == 0
 
     def test_product_mac_us(self):
@@ -108,5 +108,5 @@ class TestParser:
 
         html = io.BytesIO(resource).read().decode()
 
-        products = parse_products("mac", html)
+        products = parse_products("mac", "us", html)
         assert len(products) == 138

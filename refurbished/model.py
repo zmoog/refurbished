@@ -13,6 +13,7 @@ class Product:
 
     name: str
     family: str
+    store: str
     url: str
     price: decimal.Decimal
     previous_price: decimal.Decimal
@@ -33,5 +34,7 @@ class Product:
         """
         A readable version for prints.
         """
-        return f"{self.price} ({'-{:.0%}'.format(self.saving_percentage)}) "
-        "- [{self.model}] {self.name} {self.url}"
+        return (
+            f"{self.price} ({'-{:.0%}'.format(self.saving_percentage)}) "
+            "- [{self.model}] {self.name} {self.url}"
+        )
