@@ -83,3 +83,21 @@ class TestFeedback(object):
             result.output
             == '{"name": "iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)", "family": "ipad", "store": "it", "url": "https://www.apple.com/it/shop/product/FR7K2TY/A/Refurbished-iPad-Wi-Fi-128GB-Silver-6th-Generation", "price": 389.0, "previous_price": 449.0, "savings_price": 60.0, "saving_percentage": 0.133630289532294, "model": "FR7K2TY"}\n'  # noqa: E501
         )
+
+    @patch(
+        "requests.Session.get",
+        side_effect=ResponseBuilder("it_ipad.html"),
+    )
+    def test_csv_format(self, _, cli_runner: CliRunner):
+        result = cli_runner.invoke(
+            rfrb.get_products,
+            ["it", "ipads", "--max-price", "389", "--format", "csv"],
+        )
+
+        assert result.exit_code == 0
+        assert (
+            result.output
+            == """name,family,store,url,price,previous_price,savings_price,saving_percentage,model
+iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione),ipad,it,https://www.apple.com/it/shop/product/FR7K2TY/A/Refurbished-iPad-Wi-Fi-128GB-Silver-6th-Generation,389.00,449.00,60.00,0.133630289532294,FR7K2TY
+"""  # noqa: E501
+        )
