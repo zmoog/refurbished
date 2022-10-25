@@ -104,10 +104,10 @@ MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display 
 
 ## Built With
 
-* [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
-* [price-parser](https://github.com/scrapinghub/price-parser)
-* [pydantic](https://pydantic-docs.helpmanual.io/)
-* [requests](https://requests.readthedocs.io/en/master/)
+- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
+- [price-parser](https://github.com/scrapinghub/price-parser)
+- [pydantic](https://pydantic-docs.helpmanual.io/)
+- [requests](https://requests.readthedocs.io/en/master/)
 
 ## Development
 
@@ -123,9 +123,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Maurizio Branca** - *Initial work* - [zmoog](https://github.com/zmoog)
-* **Yizhou "Andi" Cui** - *Improved parser* - [AndiCui](https://github.com/AndiCui)
-* **Grant** - *Dockerfile* - [Firefishy](https://github.com/Firefishy)
+- **Maurizio Branca** - *Initial work* - [zmoog](https://github.com/zmoog)
+- **Yizhou "Andi" Cui** - *Improved parser* - [AndiCui](https://github.com/AndiCui)
+- **Grant** - *Dockerfile* - [Firefishy](https://github.com/Firefishy)
 
 ## License
 
