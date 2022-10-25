@@ -77,7 +77,7 @@ $ rfrb it ipads --max-price 539 --format ndjson
 ##### CSV
 
 ```shell
-$ rfrb it ipads --name 'iPad Air Wi-Fi 64GB' --format csv                                                    zmoog/csv-output-option  ✭ ✱
+$ rfrb it ipads --name 'iPad Air Wi-Fi 64GB' --format csv
 name,family,store,url,price,previous_price,savings_price,saving_percentage,model
 iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione),ipad,it,https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione,479.00,559.00,80.00,0.14,FUUL2TY
 iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione),ipad,it,https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione,539.00,639.00,100.00,0.16,FYFQ2TY
