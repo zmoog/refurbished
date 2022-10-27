@@ -44,27 +44,17 @@ class Feedback:
             entries = result.data()
 
             # we need at least one entry to get the fieldnames from
-            # the pydantic dataclass for the csv header
-            if len(entries) == 0:
+            # the pydantic dataclass and write the csv header
+            if not entries:
                 return
 
-            # assumption: entries are all pydantic dataclasses
-            if not is_dataclass(entries[0]):
-                raise TypeError(
-                    "CSV format requires a list of dataclasses, got "
-                    f"{type(entries[0])}"
-                )
-
-            fieldnames = (
-                entries[0].__pydantic_model__.schema()["properties"].keys()
-            )
-
             out = io.StringIO()
-            writer = csv.DictWriter(out, fieldnames=fieldnames)
+            writer = csv.DictWriter(out, fieldnames=result.fieldnames())
             writer.writeheader()
             for entry in entries:
                 writer.writerow(asdict(entry))
 
+            # delegate newline to the csv writer
             click.echo(out.getvalue(), nl=False)
 
 
@@ -100,5 +90,12 @@ class ProductsResult:
             )
         return out
 
-    def data(self):
+    def data(self) -> List[Product]:
         return self.values
+
+    def fieldnames(self) -> List[str]:
+        if self.values:
+            return (
+                self.values[0].__pydantic_model__.schema()["properties"].keys()
+            )
+        return []
