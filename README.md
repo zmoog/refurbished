@@ -21,7 +21,14 @@ $ rfrb it macs --min-saving=300
 
 #### Output formats
 
-Refurbished supports several output formats.
+Refurbished supports several output formats:
+
+- `text`
+- `json`
+- `ndjson`
+- `csv`
+
+Here are a few examples.
 
 ##### text
 
@@ -67,6 +74,15 @@ $ rfrb it ipads --max-price 539 --format ndjson
 {"name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione", "price": 539.0, "previous_price": 639.0, "savings_price": 100.0, "saving_percentage": 0.1564945226917058, "model": "FYFQ2TY"}
 ```
 
+##### CSV
+
+```shell
+$ rfrb it ipads --name 'iPad Air Wi-Fi 64GB' --format csv
+name,family,store,url,price,previous_price,savings_price,saving_percentage,model
+iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione),ipad,it,https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione,479.00,559.00,80.00,0.14,FUUL2TY
+iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione),ipad,it,https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione,539.00,639.00,100.00,0.16,FYFQ2TY
+iPad Air Wi-Fi 64GB ricondizionato - Grigio siderale (quarta generazione),ipad,it,https://www.apple.com/it/shop/product/FYFM2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Grigio-siderale-quarta-generazione,539.00,639.00,100.00,0.16,FYFM2TY
+```
 
 ### Library
 
@@ -88,10 +104,10 @@ MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display 
 
 ## Built With
 
-* [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
-* [price-parser](https://github.com/scrapinghub/price-parser)
-* [pydantic](https://pydantic-docs.helpmanual.io/)
-* [requests](https://requests.readthedocs.io/en/master/)
+- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/)
+- [price-parser](https://github.com/scrapinghub/price-parser)
+- [pydantic](https://pydantic-docs.helpmanual.io/)
+- [requests](https://requests.readthedocs.io/en/master/)
 
 ## Development
 
@@ -107,9 +123,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Maurizio Branca** - *Initial work* - [zmoog](https://github.com/zmoog)
-* **Yizhou "Andi" Cui** - *Improved parser* - [AndiCui](https://github.com/AndiCui)
-* **Grant** - *Dockerfile* - [Firefishy](https://github.com/Firefishy)
+- **Maurizio Branca** - *Initial work* - [zmoog](https://github.com/zmoog)
+- **Yizhou "Andi" Cui** - *Improved parser* - [AndiCui](https://github.com/AndiCui)
+- **Grant** - *Dockerfile* - [Firefishy](https://github.com/Firefishy)
 
 ## License
 

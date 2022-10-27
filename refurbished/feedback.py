@@ -1,10 +1,10 @@
+import csv
+import io
 import json
-from typing import List
+from dataclasses import asdict
 
 import click
 from pydantic.json import pydantic_encoder
-
-from .model import Product
 
 
 class Feedback:
@@ -14,27 +14,45 @@ class Feedback:
     def echo(self, text, nl=True, err=False):
         click.echo(text, nl=nl, err=err)
 
-    def result(self, result):
+    def result(self, result) -> None:
         if self.format == "text":
             click.echo(
                 result.str(),
-                # delefate newlines to the result class
+                # delegate newlines to the result class
                 nl=False,
             )
         elif self.format == "json":
+            # assumption: entries are all pydantic dataclasses
             click.echo(
                 json.dumps(result.data(), indent=2, default=pydantic_encoder),
                 # delegate newline to json.dumps
                 nl=False,
             )
         elif self.format == "ndjson":
-            for product in result.data():
+            # assumption: entries are all pydantic dataclasses
+            for entry in result.data():
                 click.echo(
-                    json.dumps(product, default=pydantic_encoder),
+                    json.dumps(entry, default=pydantic_encoder),
                     # The newline is required by the format to separate the
                     # JSON objects
                     nl=True,
                 )
+        elif self.format == "csv":
+            entries = result.data()
+
+            # we need at least one entry to get the fieldnames from
+            # the pydantic dataclass and write the csv header
+            if not entries:
+                return
+
+            out = io.StringIO()
+            writer = csv.DictWriter(out, fieldnames=result.fieldnames())
+            writer.writeheader()
+            for entry in entries:
+                writer.writerow(asdict(entry))
+
+            # delegate newline to the csv writer
+            click.echo(out.getvalue(), nl=False)
 
 
 _current_feedback = Feedback("text")
@@ -50,24 +68,3 @@ def echo(value, nl=True, err=False):
 
 def result(values):
     _current_feedback.result(values)
-
-
-class ProductsResult:
-    def __init__(self, values: List[Product]):
-        self.values = values
-
-    def str(self) -> str:
-        if len(self.values) == 0:
-            return "No products found"
-        out = ""
-        for p in self.values:
-            out += (
-                f"{p.previous_price} "
-                f"{p.price} "
-                f"{p.savings_price} "
-                f"({p.saving_percentage * 100}%) {p.name}\n"
-            )
-        return out
-
-    def data(self):
-        return self.values

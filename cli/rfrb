@@ -3,7 +3,7 @@ import decimal
 
 import click
 
-from refurbished import ProductNotFoundError, Store, feedback
+from refurbished import ProductNotFoundError, Store, cli, feedback
 
 
 @click.command()
@@ -63,7 +63,7 @@ def get_products(
             name=name,
         )
 
-        feedback.result(feedback.ProductsResult(products))
+        feedback.result(cli.ProductsResult(products))
 
     except ProductNotFoundError:
         # the selected procuct is not available on this store
