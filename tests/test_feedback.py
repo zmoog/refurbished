@@ -17,10 +17,29 @@ class TestFeedback(object):
             rfrb.get_products, ["it", "ipads", "--max-price", "389"]
         )
 
+        with open("sample.txt", "w") as f:
+            f.write(result.output)
+
         assert result.exit_code == 0
         assert (
+            # Click's CliRunner uses a terminal width of 80 characters, so
+            # Rich will wrap the output to fit the terminal width.
+            #
+            # Don't go crazy with the indentation, just save the output in a
+            # file with something like:
+            #
+            # with open("sample.txt", "w") as f:
+            #     f.write(result.output)
+            #
             result.output
-            == "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)\n"  # noqa: E501
+            == """                              Refurbished Products                              
+                                                                                
+  Previous   Current   Saving      Name                                         
+ ────────────────────────────────────────────────────────────────────────────── 
+  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+                                   (sesta generazione)                          
+                                                                                
+"""  # noqanoqa: W291 W293
         )
 
     @patch(
@@ -35,8 +54,24 @@ class TestFeedback(object):
 
         assert result.exit_code == 0
         assert (
+            # Click's CliRunner uses a terminal width of 80 characters, so
+            # Rich will wrap the output to fit the terminal width.
+            #
+            # Don't go crazy with the indentation, just save the output in a
+            # file with something like:
+            #
+            # with open("sample.txt", "w") as f:
+            #     f.write(result.output)
+            #
             result.output
-            == "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)\n"  # noqa: E501
+            == """                              Refurbished Products                              
+                                                                                
+  Previous   Current   Saving      Name                                         
+ ────────────────────────────────────────────────────────────────────────────── 
+  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+                                   (sesta generazione)                          
+                                                                                
+"""  # noqa: W291 W293
         )
 
     @patch(
