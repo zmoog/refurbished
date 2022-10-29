@@ -1,6 +1,7 @@
 import io
 from typing import List
 
+from rich import box
 from rich.console import Console
 from rich.table import Table
 
@@ -15,23 +16,21 @@ class ProductsResult:
         if not self.values:
             return "No products found\n"
 
-        table = Table(title="Refurbished Products", width=200)
-
-        table.add_column("Previous Price")
-        table.add_column("Price")
-        table.add_column("Saving Price")
-        table.add_column("Saving Percentage")
+        table = Table(title="Refurbished Products", box=box.SIMPLE)
+        table.add_column("Previous")
+        table.add_column("Current")
+        table.add_column("Saving")
         table.add_column("Name")
 
-        for p in self.values:
+        for v in self.values:
             table.add_row(
-                f"{p.previous_price}",
-                f"{p.price}",
-                f"{p.savings_price}",
-                f"{p.saving_percentage}",
-                p.name,
+                f"{v.previous_price:,.0f}",
+                f"{v.price:,.0f}",
+                f"{v.saving_percentage:.0%} (-{v.savings_price:,.0f})",
+                v.name,
             )
 
+        # turn table into a string using the Console
         console = Console(file=io.StringIO())
         console.print(table)
 
