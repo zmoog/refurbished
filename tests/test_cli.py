@@ -45,6 +45,7 @@ class TestCLI:
             # with open("sample.txt", "w") as f:
             #     f.write(result.output)
             #
+            # And then copy the output from the file in the assert.
             result.output
             == """                              Refurbished Products                              
                                                                                 
@@ -76,6 +77,7 @@ class TestCLI:
             # with open("sample.txt", "w") as f:
             #     f.write(result.output)
             #
+            # And then copy the output from the file in the assert.
             result.output
             == """                              Refurbished Products                              
                                                                                 
