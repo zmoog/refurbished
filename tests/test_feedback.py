@@ -17,9 +17,6 @@ class TestFeedback(object):
             rfrb.get_products, ["it", "ipads", "--max-price", "389"]
         )
 
-        with open("sample.txt", "w") as f:
-            f.write(result.output)
-
         assert result.exit_code == 0
         assert (
             # Click's CliRunner uses a terminal width of 80 characters, so
@@ -35,9 +32,9 @@ class TestFeedback(object):
             result.output
             == """                              Refurbished Products                              
                                                                                 
-  Previous   Current   Saving      Name                                         
+  Current   Previous   Saving      Name                                         
  ────────────────────────────────────────────────────────────────────────────── 
-  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
                                    (sesta generazione)                          
                                                                                 
 """  # noqanoqa: W291 W293
@@ -68,9 +65,9 @@ class TestFeedback(object):
             result.output
             == """                              Refurbished Products                              
                                                                                 
-  Previous   Current   Saving      Name                                         
+  Current   Previous   Saving      Name                                         
  ────────────────────────────────────────────────────────────────────────────── 
-  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
                                    (sesta generazione)                          
                                                                                 
 """  # noqa: W291 W293

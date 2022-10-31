@@ -17,15 +17,15 @@ class ProductsResult:
             return "No products found\n"
 
         table = Table(title="Refurbished Products", box=box.SIMPLE)
-        table.add_column("Previous")
         table.add_column("Current")
+        table.add_column("Previous")
         table.add_column("Saving")
         table.add_column("Name")
 
         for v in self.values:
             table.add_row(
-                f"{v.previous_price:,.0f}",
                 f"{v.price:,.0f}",
+                f"{v.previous_price:,.0f}",
                 f"{v.saving_percentage:.0%} (-{v.savings_price:,.0f})",
                 v.name,
             )

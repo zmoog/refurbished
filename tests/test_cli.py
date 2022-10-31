@@ -49,9 +49,9 @@ class TestCLI:
             result.output
             == """                              Refurbished Products                              
                                                                                 
-  Previous   Current   Saving      Name                                         
+  Current   Previous   Saving      Name                                         
  ────────────────────────────────────────────────────────────────────────────── 
-  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
                                    (sesta generazione)                          
                                                                                 
 """  # noqa: W291 W293
@@ -63,7 +63,8 @@ class TestCLI:
     )
     def test_max_previous_price(self, _, cli_runner: CliRunner):
         result = cli_runner.invoke(
-            rfrb.get_products, ["it", "ipads", "--max-previous-price", "500"]
+            rfrb.get_products,
+            ["it", "ipads", "--max-previous-price", "500"],
         )
 
         assert result.exit_code == 0
@@ -81,9 +82,9 @@ class TestCLI:
             result.output
             == """                              Refurbished Products                              
                                                                                 
-  Previous   Current   Saving      Name                                         
+  Current   Previous   Saving      Name                                         
  ────────────────────────────────────────────────────────────────────────────── 
-  449        389       13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
                                    (sesta generazione)                          
                                                                                 
 """  # noqa: W291 W293
