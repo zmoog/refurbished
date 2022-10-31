@@ -17,9 +17,7 @@ class TestCLI:
         side_effect=ResponseBuilder("page_not_found.html", status_code=404),
     )
     def test_product_ipad_it(self, _, cli_runner: CliRunner):
-        runner = CliRunner()
-
-        result = runner.invoke(rfrb.get_products, ["be", "macs"])
+        result = cli_runner.invoke(rfrb.get_products, ["be", "macs"])
 
         assert result.exit_code == 0, result.output
         assert (
@@ -32,17 +30,31 @@ class TestCLI:
         side_effect=ResponseBuilder("it_ipad.html"),
     )
     def test_max_price(self, _, cli_runner: CliRunner):
-        runner = CliRunner()
-
-        result = runner.invoke(
+        result = cli_runner.invoke(
             rfrb.get_products, ["it", "ipads", "--max-price", "400"]
         )
 
         assert result.exit_code == 0
         assert (
-            # this is the only product that matches the max price
-            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)"  # noqa
-            in result.output
+            # Click's CliRunner uses a terminal width of 80 characters, so
+            # Rich will wrap the output to fit the terminal width.
+            #
+            # Don't go crazy with the indentation, just save the output in a
+            # file with something like:
+            #
+            # with open("sample.txt", "w") as f:
+            #     f.write(result.output)
+            #
+            # And then copy the output from the file in the assert.
+            result.output
+            == """                              Refurbished Products                              
+                                                                                
+  Current   Previous   Saving      Name                                         
+ ────────────────────────────────────────────────────────────────────────────── 
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+                                   (sesta generazione)                          
+                                                                                
+"""  # noqa: W291 W293
         )
 
     @patch(
@@ -50,15 +62,30 @@ class TestCLI:
         side_effect=ResponseBuilder("it_ipad.html"),
     )
     def test_max_previous_price(self, _, cli_runner: CliRunner):
-        runner = CliRunner()
-
-        result = runner.invoke(
-            rfrb.get_products, ["it", "ipads", "--max-previous-price", "500"]
+        result = cli_runner.invoke(
+            rfrb.get_products,
+            ["it", "ipads", "--max-previous-price", "500"],
         )
 
         assert result.exit_code == 0
         assert (
-            # this is the only product that matches the max previous price
-            "449.00 389.00 60.00 (13.3630289532294%) iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)"  # noqa
-            in result.output
+            # Click's CliRunner uses a terminal width of 80 characters, so
+            # Rich will wrap the output to fit the terminal width.
+            #
+            # Don't go crazy with the indentation, just save the output in a
+            # file with something like:
+            #
+            # with open("sample.txt", "w") as f:
+            #     f.write(result.output)
+            #
+            # And then copy the output from the file in the assert.
+            result.output
+            == """                              Refurbished Products                              
+                                                                                
+  Current   Previous   Saving      Name                                         
+ ────────────────────────────────────────────────────────────────────────────── 
+  389       449        13% (-60)   iPad Wi-Fi 128GB ricondizionato - Argento    
+                                   (sesta generazione)                          
+                                                                                
+"""  # noqa: W291 W293
         )
