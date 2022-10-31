@@ -47,8 +47,13 @@ Here are a few examples.
 
 ```shell
 $ rfrb it ipads --max-price 539
-559.00 479.00 80.00 (14.311270125223613%) iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)
-639.00 539.00 100.00 (15.64945226917058%) iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)
+                                             Refurbished Products                                              
+                                                                                                               
+  Current   Previous   Saving       Name                                                                       
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  479       559        14% (-80)    iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)               
+  539       639        16% (-100)   iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)          
+  539       639        16% (-100)   iPad Air Wi-Fi 64GB ricondizionato - Grigio siderale (quarta generazione)  
 ```
 
 ##### JSON
