@@ -33,6 +33,20 @@ $ rfrb it macs --min-saving=300
   FUW63T   3,979     4,679      15% (-700)   MacBook Pro 16" ricondizionato con chip Apple M3 Max, CPU 16‐core e GPU 40‐core - Nero siderale                   
 ```
 
+#### Products
+
+Refurbished supports the following products from the refurbished section of the Apple Store:
+
+- `accessories`
+- `airpods`
+- `appletvs`
+- `homepods`
+- `macs`
+- `iphones`
+- `ipads`
+- `watches`
+- `clearance`
+
 #### Output formats
 
 Refurbished supports several output formats:
@@ -50,11 +64,10 @@ Here are a few examples.
 $ rfrb it ipads --max-price 539
                                              Refurbished Products                                              
                                                                                                                
-  Current   Previous   Saving       Name                                                                       
- ───────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  479       559        14% (-80)    iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)               
-  539       639        16% (-100)   iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)          
-  539       639        16% (-100)   iPad Air Wi-Fi 64GB ricondizionato - Grigio siderale (quarta generazione)  
+  Model     Current   Previous   Saving      Name                                                       
+ ────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  FUWA3ZM   79        89         11% (-10)   Apple Pencil (USB‐C) ricondizionata                        
+  FCM84TY   339       409        17% (-70)   iPad Wi-Fi 64GB ricondizionato - Blu (decima generazione)  
 ```
 
 ##### JSON
@@ -63,24 +76,26 @@ $ rfrb it ipads --max-price 539
 $ rfrb it ipads --max-price 539 --format json
 [
   {
-    "name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)",
+    "name": "Apple Pencil (USB\u2010C) ricondizionata",
     "family": "ipad",
-    "url": "https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione",
-    "price": 479.0,
-    "previous_price": 559.0,
-    "savings_price": 80.0,
-    "saving_percentage": 0.14311270125223613,
-    "model": "FUUL2TY"
+    "store": "it",
+    "url": "https://www.apple.com/it/shop/product/FUWA3ZM/A/apple-pencil-usb%E2%80%91c-ricondizionata",
+    "price": 79.0,
+    "previous_price": 89.0,
+    "savings_price": 10.0,
+    "saving_percentage": 0.11235955056179775,
+    "model": "FUWA3ZM"
   },
   {
-    "name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)",
+    "name": "iPad Wi-Fi 64GB ricondizionato - Blu (decima generazione)",
     "family": "ipad",
-    "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione",
-    "price": 539.0,
-    "previous_price": 639.0,
-    "savings_price": 100.0,
-    "saving_percentage": 0.1564945226917058,
-    "model": "FYFQ2TY"
+    "store": "it",
+    "url": "https://www.apple.com/it/shop/product/FCM84TY/A/ipad-wi-fi-64gb-ricondizionato-blu-decima-generazione",
+    "price": 339.0,
+    "previous_price": 409.0,
+    "savings_price": 70.0,
+    "saving_percentage": 0.17114914425427874,
+    "model": "FCM84TY"
   }
 ]
 ```
@@ -89,8 +104,9 @@ $ rfrb it ipads --max-price 539 --format json
 
 ```shell
 $ rfrb it ipads --max-price 539 --format ndjson
-{"name": "iPad Air Wi-Fi 64GB ricondizionato - Oro (terza generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FUUL2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Oro-terza-generazione", "price": 479.0, "previous_price": 559.0, "savings_price": 80.0, "saving_percentage": 0.14311270125223613, "model": "FUUL2TY"}
-{"name": "iPad Air Wi-Fi 64GB ricondizionato - Celeste (quarta generazione)", "family": "ipad", "url": "https://www.apple.com/it/shop/product/FYFQ2TY/A/iPad-Air-Wi-Fi-64GB-ricondizionato-Celeste-quarta-generazione", "price": 539.0, "previous_price": 639.0, "savings_price": 100.0, "saving_percentage": 0.1564945226917058, "model": "FYFQ2TY"}
+{"name": "Apple Pencil (USB\u2010C) ricondizionata", "family": "ipad", "store": "it", "url": "https://www.apple.com/it/shop/product/FUWA3ZM/A/apple-pencil-usb%E2%80%91c-ricondizionata", "price": 79.0, "previous_price": 89.0, "savings_price": 10.0, "saving_percentage": 0.11235955056179775, "model": "FUWA3ZM"}
+{"name": "iPad Wi-Fi 64GB ricondizionato - Blu (decima generazione)", "family": "ipad", "store": "it", "url": "https://www.apple.com/it/shop/product/FCM84TY/A/ipad-wi-fi-64gb-ricondizionato-blu-decima-generazione", "price": 339.0, "previous_price": 409.0, "savings_price": 70.0, "saving_percentage": 0.17114914425427874, "model": "FCM84TY"}
+
 ```
 
 ##### CSV
