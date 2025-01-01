@@ -12,24 +12,25 @@ A quick search for Macs with a min saving of 300 EUR on the Italian store:
 $ rfrb it macs --min-saving=300
                                                              Refurbished Products                                                             
                                                                                                                                               
-  Current   Previous   Saving       Name                                                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  1,699     2,229      24% (-530)   MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento          
-  1,699     2,229      24% (-530)   MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale  
-  1,899     2,459      23% (-560)   MacBook Pro 13,3" ricondizionato con Intel Core i5 quad-core a 2,0GHz e display Retina - Argento          
-  1,899     2,459      23% (-560)   MacBook Pro 13,3" ricondizionato con Intel Core i5 quad‐core a 2,0GHz e display Retina - Grigio siderale  
-  1,999     2,349      15% (-350)   MacBook Pro 14" ricondizionato con chip Apple M1 Pro, CPU 8‐core e GPU 14‐core - Argento                  
-  1,999     2,349      15% (-350)   MacBook Pro 14" ricondizionato con chip Apple M1 Pro, CPU 8‐core e GPU 14‐core - Grigio siderale          
-  2,429     2,849      15% (-420)   MacBook Pro 16" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Argento                 
-  2,429     2,849      15% (-420)   MacBook Pro 14" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Grigio siderale         
-  2,429     2,849      15% (-420)   MacBook Pro 16" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Grigio siderale         
-  2,429     2,849      15% (-420)   MacBook Pro 14" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Argento                 
-  2,629     3,079      15% (-450)   MacBook Pro 16" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Argento                 
-  2,629     3,079      15% (-450)   MacBook Pro 16" ricondizionato con chip Apple M1 Pro, CPU 10‐core e GPU 16‐core - Grigio siderale         
-  3,369     3,949      15% (-580)   MacBook Pro 16" ricondizionato con chip Apple M1 Max, CPU 10‐core e GPU 32‐core - Grigio siderale         
-  3,369     3,949      15% (-580)   MacBook Pro 16" ricondizionato con chip Apple M1 Max, CPU 10‐core e GPU 32‐core - Argento                 
-                                                                                                                                              
-
+  Model    Current   Previous   Saving       Name                                                                                                
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  FGN63T   869       1,229      29% (-360)   MacBook Air 13,3" ricondizionato con chip Apple M1, CPU 8‐core e GPU 7‐core - Grigio siderale       
+  FGN93T   869       1,229      29% (-360)   MacBook Air 13,3" ricondizionato con chip Apple M1, CPU 8‐core e GPU 7‐core - Argento               
+  FGND3T   869       1,229      29% (-360)   MacBook Air 13,3" ricondizionato con chip Apple M1, CPU 8‐core e GPU 7‐core - Oro                   
+  FGN73T   1,049     1,429      27% (-380)   MacBook Air 13,3" ricondizionato con chip Apple M1, CPU 8‐core e GPU 8‐core - Grigio siderale       
+  FGNA3T   1,049     1,429      27% (-380)   MacBook Air 13,3" ricondizionato con chip Apple M1, CPU 8‐core e GPU 8‐core - Argento               
+  FQKR3T   1,209     1,519      20% (-310)   MacBook Air 15" ricondizionato con chip Apple M2, CPU 8‐core e GPU 10‐core - Argento                
+  FQKU3T   1,209     1,519      20% (-310)   MacBook Air 15" ricondizionato con chip Apple M2, CPU 8‐core e GPU 10‐core - Galassia               
+  FQKW3T   1,209     1,519      20% (-310)   MacBook Air 15" ricondizionato con chip Apple M2, CPU 8‐core e GPU 10‐core - Mezzanotte             
+  FRX63T   2,019     2,379      15% (-360)   MacBook Pro 14" ricondizionato con chip Apple M3 Pro, CPU 11‐core e GPU 14‐core - Argento           
+  FRX33T   2,019     2,379      15% (-360)   MacBook Pro 14" ricondizionato con chip Apple M3 Pro, CPU 11‐core e GPU 14‐core - Nero siderale     
+  FRX43T   2,449     2,879      15% (-430)   MacBook Pro 14" ricondizionato con chip Apple M3 Pro, CPU 12-core e GPU 18-core - Nero siderale     
+  FRX73T   2,449     2,879      15% (-430)   MacBook Pro 14" ricondizionato con chip Apple M3 Pro, CPU 12-core e GPU 18-core - Argento           
+  FRX53T   3,209     3,779      15% (-570)   MacBook Pro 14" ricondizionato con chip Apple M3 Max con CPU 14‐core e GPU 30‐core - Nero siderale  
+  FRX83T   3,209     3,779      15% (-570)   MacBook Pro 14" ricondizionato con chip Apple M3 Max con CPU 14‐core e GPU 30‐core - Argento        
+  FNWA3T   3,349     4,219      21% (-870)   MacBook Pro 16" ricondizionato con chip Apple M2 Max, CPU 12‐core e GPU 38‐core - Grigio siderale   
+  FNWE3T   3,349     4,219      21% (-870)   MacBook Pro 16" ricondizionato con chip Apple M2 Max, CPU 12‐core e GPU 38‐core - Argento           
+  FUW63T   3,979     4,679      15% (-700)   MacBook Pro 16" ricondizionato con chip Apple M3 Max, CPU 16‐core e GPU 40‐core - Nero siderale                   
 ```
 
 #### Output formats
