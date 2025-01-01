@@ -5,25 +5,32 @@ with open("README.md") as f:
     long_description = f.read()
 
 NAME = "refurbished"
-REQUIRES = [
-    "beautifulsoup4 >= 4.11.1",
-    "click == 8.1.3",
-    "price-parser == 0.3.4",
-    "pydantic == 1.10.4",
-    "requests >= 2.28.1",
-    "rich >= 12.6.0",
-]
 
 setup(
     name=NAME,
-    version="0.11.0",
+    version="0.12.0",
     description="Library to search refurbished products on the Apple Store",
     author="Maurizio Branca",
     author_email="maurizio.branca@gmail.com",
     url="https://github.com/zmoog/refurbished",
     scripts=['cli/rfrb'],
     keywords=[],
-    install_requires=REQUIRES,
+    install_requires=[
+        "beautifulsoup4 >= 4.11.1",
+        "click == 8.1.3",
+        "price-parser == 0.3.4",
+        "pydantic == 1.10.4",
+        "requests >= 2.28.1",
+        "rich >= 12.6.0",        
+    ],
+    extras_require={
+        "test": [
+            "pytest==7.2.1",
+            "black==22.12.0",
+            "isort==5.12.0",
+            "flake8==6.0.0",
+        ],
+    },
     packages=find_packages(exclude=["test", "tests"]),
     classifiers=[  # https://pypi.org/classifiers/
         "Development Status :: 4 - Beta",

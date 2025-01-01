@@ -11,7 +11,17 @@ from refurbished import ProductNotFoundError, Store, cli, feedback
 @click.argument(
     "product_family",
     type=click.Choice(
-        ["accessories", "appletvs", "macs", "iphones", "ipads", "watches"]
+        [
+            "accessories",
+            "airpods",
+            "appletvs",
+            "homepods",
+            "macs",
+            "iphones",
+            "ipads",
+            "watches",
+            "clearance",
+        ]
     ),
 )
 @click.option("--min-saving", default=0.0, help="Minimum saving")

@@ -73,6 +73,18 @@ class Store:
         """
         return self._get_products("clearance", **kwargs)
 
+    def get_airpods(self, **kwargs) -> List[Product]:
+        """
+        Fetch data for the AirPods product family.
+        """
+        return self._get_products("airpods", **kwargs)
+
+    def get_homepods(self, **kwargs) -> List[Product]:
+        """
+        Fetch data for the HomePods product family.
+        """
+        return self._get_products("homepod", **kwargs)
+
     def _get_products(
         self,
         product_family,
