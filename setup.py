@@ -17,7 +17,7 @@ setup(
     keywords=[],
     install_requires=[
         "beautifulsoup4 >= 4.11.1",
-        "click == 8.1.3",
+        "click ==8.1.8",
         "price-parser == 0.3.4",
         "pydantic ==1.10.13",
         "requests >= 2.28.1",
