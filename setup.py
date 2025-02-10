@@ -8,7 +8,7 @@ NAME = "refurbished"
 
 setup(
     name=NAME,
-    version="0.12.0",
+    version="0.12.1",
     description="Library to search refurbished products on the Apple Store",
     author="Maurizio Branca",
     author_email="maurizio.branca@gmail.com",
