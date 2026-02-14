@@ -1,4 +1,5 @@
 import io
+from dataclasses import fields
 from typing import List
 
 from rich import box
@@ -41,7 +42,5 @@ class ProductsResult:
 
     def fieldnames(self) -> List[str]:
         if self.values:
-            return (
-                self.values[0].__pydantic_model__.schema()["properties"].keys()
-            )
+            return [f.name for f in fields(self.values[0])]
         return []

@@ -1,5 +1,6 @@
 import decimal
 import re
+from typing import Optional
 
 from pydantic.dataclasses import dataclass
 
@@ -18,11 +19,14 @@ class Product:
     previous_price: decimal.Decimal
     savings_price: decimal.Decimal
     saving_percentage: float = 0
-    model: str = None
+    model: Optional[str] = None
 
     def __post_init__(self):
         """
-        Populate fields that are derivable by other values
+        Populate fields that are derivable by other values.
+
+        Note: In Pydantic v2, __post_init__ is called AFTER validation,
+        which is the desired behavior for computed fields.
         """
         self.saving_percentage = float(
             self.savings_price / self.previous_price

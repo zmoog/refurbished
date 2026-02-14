@@ -19,7 +19,7 @@ setup(
         "beautifulsoup4 >= 4.11.1",
         "click ==8.1.8",
         "price-parser == 0.3.4",
-        "pydantic ==1.10.21",
+        "pydantic >=2.10,<3.0",
         "requests >= 2.28.1",
         "rich >= 12.6.0",        
     ],
