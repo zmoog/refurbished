@@ -1,10 +1,23 @@
 import csv
+import decimal
 import io
 import json
 from dataclasses import asdict
 
 import click
-from pydantic.json import pydantic_encoder
+
+
+def _custom_json_encoder(obj):
+    """
+    Custom JSON encoder for types that require special handling.
+
+    Replaces deprecated pydantic.json.pydantic_encoder in Pydantic v2.
+    """
+    if isinstance(obj, decimal.Decimal):
+        return float(obj)
+    raise TypeError(
+        f"Object of type {type(obj).__name__} is not JSON serializable"
+    )
 
 
 class Feedback:
@@ -23,8 +36,9 @@ class Feedback:
             )
         elif self.format == "json":
             # assumption: entries are all pydantic dataclasses
+            data = [asdict(entry) for entry in result.data()]
             click.echo(
-                json.dumps(result.data(), indent=2, default=pydantic_encoder),
+                json.dumps(data, indent=2, default=_custom_json_encoder),
                 # delegate newline to json.dumps
                 nl=False,
             )
@@ -32,7 +46,7 @@ class Feedback:
             # assumption: entries are all pydantic dataclasses
             for entry in result.data():
                 click.echo(
-                    json.dumps(entry, default=pydantic_encoder),
+                    json.dumps(asdict(entry), default=_custom_json_encoder),
                     # The newline is required by the format to separate the
                     # JSON objects
                     nl=True,
