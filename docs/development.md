@@ -5,7 +5,7 @@
 You need to install the following tools:
 
 * [Git](https://git-scm.com)
-* [Python](https://www.python.org) 3.7 or later, the language used to write all the application code.
+* [Python](https://www.python.org) 3.10 or later, the language used to write all the application code.
 
 ## Checkout
 

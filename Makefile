@@ -3,7 +3,7 @@
 sources = cli/* refurbished tests
 line_length = 79
 black_options = --line-length=${line_length} ${sources}
-isort_options = --line-length=${line_length} --py 39 --profile black ${sources}
+isort_options = --line-length=${line_length} --py 310 --profile black ${sources}
 
 lint: lint-black lint-isort lint-flake8  ## Lint the project on the host
 
