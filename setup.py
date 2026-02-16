@@ -25,7 +25,7 @@ setup(
     ],
     extras_require={
         "test": [
-            "pytest==7.2.1",
+            "pytest==9.0.2",
             "black==22.12.0",
             "isort==5.12.0",
             "flake8==6.1.0",
