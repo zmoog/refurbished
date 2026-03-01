@@ -17,17 +17,17 @@ setup(
     keywords=[],
     install_requires=[
         "beautifulsoup4 >= 4.11.1",
-        "click ==8.1.8",
-        "price-parser == 0.3.4",
+        "click ==8.3.1",
+        "price-parser ==0.5.0",
         "pydantic >=2.10,<3.0",
         "requests >= 2.28.1",
         "rich >= 12.6.0",        
     ],
     extras_require={
         "test": [
-            "pytest==7.2.1",
+            "pytest==7.4.4",
             "black==22.12.0",
-            "isort==5.12.0",
+            "isort==5.13.2",
             "flake8==6.1.0",
         ],
     },
