@@ -85,9 +85,7 @@ class TestFeedback(object):
 
         assert result.exit_code == 0
         # Output is pretty printed with two spaces indentation
-        assert (
-            result.output
-            == """[
+        assert result.output == """[
   {
     "name": "iPad Wi-Fi 128GB ricondizionato - Argento (sesta generazione)",
     "family": "ipad",
@@ -100,7 +98,6 @@ class TestFeedback(object):
     "model": "FR7K2TY"
   }
 ]"""  # noqa: E501
-        )
 
     @patch(
         "requests.Session.get",

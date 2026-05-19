@@ -1,6 +1,7 @@
 """
 Parser the Apple Refurbished pages to build useful product data.
 """
+
 import decimal
 import unicodedata
 from typing import List
