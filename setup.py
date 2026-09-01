@@ -27,7 +27,7 @@ setup(
         "test": [
             "pytest==9.1.0",
             "black==26.5.1",
-            "isort==8.0.1",
+            "isort==9.0.1",
             "flake8==7.3.0",
         ],
     },
