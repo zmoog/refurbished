@@ -27,8 +27,8 @@ setup(
         "test": [
             "pytest==9.1.1",
             "black==26.5.1",
-            "isort==9.0.1",
-            "flake8==7.3.0",
+            "isort==9.0.2",
+            "flake8==7.4.1",
         ],
     },
     packages=find_packages(exclude=["test", "tests"]),
