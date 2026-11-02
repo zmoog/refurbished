@@ -25,10 +25,11 @@ setup(
     ],
     extras_require={
         "test": [
-            "pytest==9.1.1",
-            "black==26.5.1",
+            "pytest==9.2.0",
+            "black==26.10.1",
             "isort==9.0.2",
-            "flake8==7.4.1",
+            "flake8==7.4.1; python_version < '3.11'",
+            "flake8==7.5.0; python_version >= '3.11'",
         ],
     },
     packages=find_packages(exclude=["test", "tests"]),
